@@ -31,7 +31,7 @@ const New = () => {
     autoplay: true,
     nextArrow: <NextButton />,
     prevArrow: <PrevButton />,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -83,11 +83,11 @@ const New = () => {
 
   return (
     <div className="px-4 py-10 bg-pink-100 w-[90%] mx-auto">
-      <h2 className="text-3xl  font-bold text-left mb-6">Popular Destinations</h2>
+      <h2 className="text-3xl  font-bold text-left mb-6">Explore Dubai</h2>
       <Slider {...settings} className="gap-5">
         {cards.map((card) => (
-          <div key={card.id} className="p-2 ">
-            <div className="relative group w-[100%] h-[360px] rounded-lg overflow-hidden shadow-lg">
+          <div key={card.id} className="p-2 px-9 ">
+            <div className="relative group w-[1/4] h-[250px] rounded-lg overflow-hidden shadow-lg">
               <img
                 src={card.image}
                 alt={card.title}

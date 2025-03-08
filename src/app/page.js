@@ -14,15 +14,17 @@ import WhyChooseUs from "./Component/WhyChooseUs";
 import Testimonial from "./Component/Testimonial";
 import ContactForm from "./Component/ContectForm";
 import Link from "next/link";
+import Itinerary from "./Component/Itinerary";
 
 
 
 export default function page() {
   return (
-    <div className="w-full">
+    <div className="w-full bg-pink-100">
    <Navbar/>
    {/* <ImageSliderWithText/> */}
    <Herosection/>
+   <Itinerary/>
    <Card1/>
    <Card2/>
    <About/>
@@ -33,7 +35,7 @@ export default function page() {
    <WhyChooseUs/>
    <Testimonial/> 
    <Services/>
-   <ContactForm/>
+   {/* <ContactForm/> */}
    <Footer/>
   </div>
   );

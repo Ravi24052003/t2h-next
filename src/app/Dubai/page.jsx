@@ -6,19 +6,27 @@ import InternationalCarousel from '../Component/Internationalcarousel'
 import Image from 'next/image'
 import ExploreCarousel from '../Component/ExploreCarousel'
 import  { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 
 
 const tripHighlights = [
-  { id: 1, category: "Adventure", text: "Explore Dubai's cutting-edge architectural wonders and marvel at the city's iconic skyline of skyscrapers and futuristic design." },
-  { id: 2, category: "Cruise", text: "Sail along Dubai Marina aboard a traditional dhow cruise, enjoying views of the city's iconic marvels, while savoring a delicious dinner and cultural entertainment." },
-  { id: 3, category: "History", text: "Learn about Dubai's rich history at the Dubai Museum, exploring exhibits that showcase the city's cultural heritage and transformation over time." },
-  { id: 4, category: "Safari", text: "Indulge in a desert safari adventure, with activities like dune bashing in a 4x4, camel riding, sandboarding, and a traditional Bedouin-style camp experience." },
-  { id: 5, category: "Luxury", text: "Stay at the iconic Atlantis The Palm resort, offering luxurious accommodations and access to the thrilling Aquaventure Waterpark." },
+  { id: 1, category: "Adventure", text: "Explore Dubai's cutting-edge architectural wonders and marvel at the city's iconic skyline of skyscrapers and futuristic design.", img:"/International/Dubai-1.png" },
+  { id: 2, category: "Cruise", text: "Sail along Dubai Marina aboard a traditional dhow cruise, enjoying views of the city's iconic marvels, while savoring a delicious dinner and cultural entertainment.", img:"/" },
+  { id: 3, category: "History", text: "Learn about Dubai's rich history at the Dubai Museum, exploring exhibits that showcase the city's cultural heritage and transformation over time.", img:"" },
+  { id: 4, category: "Safari", text: "Indulge in a desert safari adventure, with activities like dune bashing in a 4x4, camel riding, sandboarding, and a traditional Bedouin-style camp experience.", img:"" },
+  { id: 5, category: "Luxury", text: "Stay at the iconic Atlantis The Palm resort, offering luxurious accommodations and access to the thrilling Aquaventure Waterpark.", img:"" },
 ];
 
 function Page() {
 
+  const [activeDay, setActiveDay] = useState(null);
+
+  const toggleDay = (day) => {
+    setActiveDay(activeDay === day ? null : day);
+  };
+
+  
 
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -105,7 +113,24 @@ function Page() {
 {/* Trip Highlight */}
 
 
-<div className=" mx-[5%] px-6 py-10 w-[50%] ">
+
+
+
+
+
+{/* written content */}
+<div className=''>
+{/* <h1 className='mx-40 mt-10 text-left text-4xl font-bold'>Explore Dubai</h1>  */}
+
+
+<div className='flex gap-3 mt-3 mb-3  justify-center  rounded-2xl  mx-[10%]'>
+<div className=' w-[60%]  '>
+  {/* <img src="/International/Dubai-1.png "
+  className='w-[100%] h-[397] rounded-lg'
+  /> */}
+
+
+<div className="">
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Trip Highlights</h2>
       <ul className="list-disc pl-6 space-y-4 text-gray-700">
         <li>
@@ -136,45 +161,72 @@ function Page() {
 
 {/* filter */}
 
-<div className="bg-white px-6 py-10 max-w-4xl mx-auto">
-      <h2 className="text-2xl font-bold text-white mb-6">Trip Highlights</h2>
+<div className="bg-pink-100 px-6 py-10 max-w-4xl mx-auto">
+      {/* <h2 className="text-2xl font-bold text-black mb-6">Trip Highlights</h2> */}
 
       {/* Filter Buttons */}
-      <div className="flex flex-wrap gap-4 mb-6 bg-[#F4F6F9]">
-        {["All", "Adventure", "Cruise", "History", "Safari", "Luxury"].map((category) => (
+      <div className="flex flex-wrap p-2 rounded-xl gap-4 mb-6 bg-[#F4F6F9]">
+        {["All","Itinerary", "Adventure", "History", "Safari", "Luxury"].map((category) => (
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
             className={`px-4 py-2 rounded-lg font-medium ${
               selectedCategory === category
                 ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                : "bg-white text-gray-800 hover:bg-gray-300"
             }`}
           >
             {category}
           </button>
         ))}
       </div>
-
+        
       {/* Highlights List */}
       <ul className="list-disc pl-6 space-y-4 text-gray-700">
         {filteredHighlights.map((highlight) => (
+          <div>
+          {/* <img
+          src={highlight.img}
+          alt="Dubai Skyline"
+          
+          className="rounded-md object-fill w-full h-[300px]"
+        /> */}
           <li key={highlight.id}>{highlight.text}</li>
+          </div>
         ))}
       </ul>
     </div>
 
 
-{/* written content */}
-<div className=''>
-<h1 className='mx-40 mt-10 text-left text-4xl font-bold'>Explore Dubai</h1>
 
 
-<div className='flex gap-3 mt-3 mb-3  justify-center  rounded-2xl  mx-40'>
-<div className=' w-[70%]  '>
-  <img src="/International/Dubai-1.png "
-  className='w-[100%] h-[397] rounded-lg'
-  />
+
+    <div className="space-y-2 bg-transparent rounded-xl">
+        {[
+          { day: 1, title: "Arrival in Dubai | Evening Dhow Cruise",text: "Explore Dubai's cutting-edge architectural wonders and marvel at the city's iconic skyline of skyscrapers and futuristic design." },
+          { day: 2, title: "Dubai City Tour | Visit the Burj Khalifa",text: "Sail along Dubai Marina aboard a traditional dhow cruise, enjoying views of the city's iconic marvels, while savoring a delicious dinner and cultural entertainment." },
+          { day: 3, title: "Dubai Desert Safari with BBQ Dinner",text: "Learn about Dubai's rich history at the Dubai Museum, exploring exhibits that showcase the city's cultural heritage and transformation over time." },
+          { day: 4, title: "Check-In at Atlantis The Palm Hotel | Explore Aquaventure Waterpark",text: "Indulge in a desert safari adventure, with activities like dune bashing in a 4x4, camel riding, sandboarding, and a traditional Bedouin-style camp experience." },
+          { day: 5, title: "Departure",text: "Stay at the iconic Atlantis The Palm resort, offering luxurious accommodations and access to the thrilling Aquaventure Waterpark." },
+        ].map((item) => (
+          <div key={item.day} className="border-none rounded-md">
+            <button
+              className="w-full border-none flex justify-between items-center px-4 py-2 bg-white text-black font-semibold rounded-xl"
+              onClick={() => toggleDay(item.day)}
+            >
+              <span  > <span className='bg-[#BF500E] rounded-lg p-1'>DAY {item.day}</span> - {item.title}</span>
+              {activeDay === item.day ? <ChevronUp /> : <ChevronDown />}
+            </button>
+            {activeDay === item.day && (
+              <div className="px-4 py-2 bg-white rounded-lg">
+                <p className="text-gray-600 rounded-xl">{item.text}...</p>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+{/* content */}
   <div className='px-1 mt-10'>
     <h1  className='text-3xl font-bold '>Top 5 reasons why you should consider Dubai for your honeymoon destination</h1>
     <p>You might be thinking why should you consider the Dubai honeymoon trip? here’s how you can get an exotic honeymoon in Dubai and make your marriage memorable.
@@ -209,8 +261,8 @@ Due to Dubai’s extensive history of trade, the nations that actively brought i
 
   </div>
 </div>
-<div className='w-[30%]'>
-<img src="/International/dubai-2.png" alt="" className="w-[100%] rounded-md" />
+<div className='w-[40%]'>
+<img src="/International/dubai-4.png" alt="" className="w-[100%] rounded-md" />
 </div>
 
 </div>
