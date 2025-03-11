@@ -78,7 +78,7 @@ function Footer() {
           <div className="flex space-x-4 mb-4">
             <Link href="https://www.facebook.com/people/Trip-to-Honeymoon/61551720045200/" target='blank'><FaFacebook className="text-xl cursor-pointer hover:text-gray-400" /></Link>
             <Link href="https://www.instagram.com/triptohoneymoon_official/" target='blank'><FaInstagram className="text-xl cursor-pointer hover:text-gray-400" /></Link>
-            <Link href="https://www.youtube.com/@AdmireHolidays_official" target='blank'><FaYoutube className="text-xl cursor-pointer hover:text-gray-400" /></Link>
+            <Link href="https://www.youtube.com/@Trip2honeymoon_official" target='blank'><FaYoutube className="text-xl cursor-pointer hover:text-gray-400" /></Link>
           </div>
           <h4 className="font-semibold mb-2">Subscribe</h4>
           <p className="text-sm mb-4">
