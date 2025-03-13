@@ -3,7 +3,7 @@ import React from "react";
 import Slider from "react-slick";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const New = () => {
+const ExploreCarViet = () => {
 
     const PrevButton = ({ onClick }) => (
         <button
@@ -57,33 +57,34 @@ const New = () => {
   const cards = [
     {
       id: 1,
-      title: "Explore Dubai",
-      description: "Discover the beauty of Dubai's skyline.",
-      image: "/International/dubai-1.png",
-    },
-    {
+      title: "Explore Vietnam",
+      description: "Discover Hanoi's vibrant culture.",
+      image: "/International/Vietnam-1.png"
+  },
+  {
       id: 2,
-      title: "Romantic Dubai",
-      description: "Experience love in the city of lights.",
-      image: "/International/dubai-2.png",
-    },
-    {
+      title: "Romantic Vietnam",
+      description: "Sail Halong Bay's emerald waters.",
+      image: "/International/Vietnam-2.png"
+  },
+  {
       id: 3,
-      title: "Adventures in Dubai",
-      description: "Immerse yourself in tropical paradise.",
-      image: "/International/dubai-3.png",
-    },
-    {
+      title: "Adventures in Vietnam",
+      description: "Trek Sapa's misty mountains.",
+      image: "/International/Vietnam-3.png"
+  },
+  {
       id: 4,
-      title: "Dubai tour",
-      description: "Relax on pristine beaches.",
-      image: "/International/dubai-4.png",
-    },
+      title: "Vietnam Tour",
+      description: "Relax on Da Nang's beaches.",
+      image: "/International/Vietnam-4.png"
+  }
+  
   ];
 
   return (
     <div className="px-4 py-10 bg-pink-100 w-[90%] mx-auto">
-      <h2 className="text-3xl  font-bold text-left mb-6">Explore Dubai</h2>
+      <h2 className="text-3xl  font-bold text-left mb-6">Explore Vietnam</h2>
       <Slider {...settings} className="gap-5">
         {cards.map((card) => (
           <div key={card.id} className="p-2 px-9 ">
@@ -107,4 +108,4 @@ const New = () => {
   );
 };
 
-export default New;
+export default ExploreCarViet;

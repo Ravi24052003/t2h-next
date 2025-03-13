@@ -8,22 +8,22 @@ function Services() {
   const services = [
     {
       id: 1,
-      image: "/images/services1.jpg",
+      image: "/International/hotel.jpg",
       title: "Hotels",
     },
     {
       id: 2,
-      image: "/images/services2.jpg",
+      image: "/International/photoshoot.jpeg",
       title: "Photoshoot",
     },
     {
       id: 3,
-      image: "/images/services3.jpg",
+      image: "/International/wedding.jpg",
       title: "Wedding",
     },
     {
       id: 4,
-      image: "/images/services1.jpg",
+      image: "/International/Event.jpeg",
       title: "Event",
     },
   ];

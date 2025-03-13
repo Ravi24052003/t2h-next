@@ -43,7 +43,7 @@ function Card1() {
       placeName: "New York",
       images: ["/International/NewYork-1.png", "/International/NewYork-2.png", "/International/NewYork-3.png"],
       amount: "5000",
-      link: "/Newyork",
+      link: "/NewYork",
       details:
         "New York, the city that never sleeps, dazzles with Times Square, Central Park, skyscrapers, diverse culture, and endless opportunities",
     },

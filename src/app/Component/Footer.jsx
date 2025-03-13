@@ -76,9 +76,30 @@ function Footer() {
         <div>
           <h3 className="font-bold text-lg mb-4">Follow Us on</h3>
           <div className="flex space-x-4 mb-4">
-            <Link href="https://www.facebook.com/people/Trip-to-Honeymoon/61551720045200/" target='blank'><FaFacebook className="text-xl cursor-pointer hover:text-gray-400" /></Link>
-            <Link href="https://www.instagram.com/triptohoneymoon_official/" target='blank'><FaInstagram className="text-xl cursor-pointer hover:text-gray-400" /></Link>
-            <Link href="https://www.youtube.com/@Trip2honeymoon_official" target='blank'><FaYoutube className="text-xl cursor-pointer hover:text-gray-400" /></Link>
+            <Link href="https://www.facebook.com/people/Trip-to-Honeymoon/61551720045200/" target='blank' className='relative group'><FaFacebook className=" text-xl cursor-pointer hover:text-blue-600 " />
+            <span
+            className={`absolute  transform -translate-x-6 -translate-y-[50px]
+                        bg-blue-600 text-white text-sm px-2 py-1 rounded 
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+          >
+            Facebook
+          </span></Link>
+            <Link href="https://www.instagram.com/triptohoneymoon_official/" target='blank' className='relative group'><FaInstagram className="text-xl cursor-pointer hover:text-pink-500" />
+            <span
+            className={`absolute  transform -translate-x-6 -translate-y-[50px]
+                        bg-pink-500 text-white text-sm px-2 py-1 rounded 
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+          >
+            Instagram
+          </span></Link>
+            <Link href="https://www.youtube.com/@AdmireHolidays_official" target='blank' className='relative group'><FaYoutube className="text-xl cursor-pointer hover:text-red-600" />
+            <span
+            className={`absolute  transform -translate-x-6 -translate-y-[50px]
+                        bg-red-600 text-white text-sm px-2 py-1 rounded 
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+          >
+            Youtube
+          </span></Link>
           </div>
           <h4 className="font-semibold mb-2">Subscribe</h4>
           <p className="text-sm mb-4">

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function BigCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -10,6 +11,7 @@ function BigCarousel() {
       name: "Dubai",
       image: "/images/card1.png",
       amount: "4000",
+      link:"/Dubai",
       details1: "Dubai, a city of innovation, blends tradition and modernity. From bustling souks to record-breaking skyscrapers, it offers endless wonders.",
       details2: "Explore the Palm Jumeirah, Burj Khalifa, and desert safaris. Dubai is a hub of luxury, culture, and unforgettable experiences for all.",
     },
@@ -17,6 +19,7 @@ function BigCarousel() {
       name: "Vietnam",
       image: "/images/card2.png",
       amount: "5000",
+      link:"/Vietnam",
       details1: "Vietnam, a Southeast Asian gem, is known for its stunning landscapes, vibrant cities, and rich culture. Hanoi and Ho Chi Minh shine brightly.",
       details2: "From Ha Long Bay's beauty to Mekong Delta's charm, Vietnam offers history, street food, and warm hospitality to all travelers.",
     },
@@ -24,6 +27,7 @@ function BigCarousel() {
       name: "Paris",
       image: "/images/card3.png",
       amount: "6000",
+      link:"/Paris",
       details1: "Paris, the City of Light, enchants with its iconic Eiffel Tower, charming streets, and world-class art. The Louvre and Notre-Dame awe visitors.",
       details2: "From café culture to Seine river strolls, Paris offers romance, history, and timeless beauty, making it a dream destination for all.",
     },
@@ -101,8 +105,8 @@ function BigCarousel() {
               <p className="text-gray-700 mb-4">{destinations[currentIndex].details2}</p>
               <p className="text-red-500 text-xl font-bold mb-4">{destinations[currentIndex].amount} Per Head</p>
               <div className="flex gap-4">
-                <button className="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600 transition">Book Now</button>
-                <button className="bg-gray-300 text-gray-700 py-2 px-6 rounded-lg hover:bg-gray-400 transition">Know More</button>
+                <Link href={destinations[currentIndex].link} ><button className="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600 transition">Book Now</button></Link>
+                <Link href={destinations[currentIndex].link} >    <button className="bg-gray-300 text-gray-700 py-2 px-6 rounded-lg hover:bg-gray-400 transition">Know More</button></Link>
               </div>
             </div>
           </div>

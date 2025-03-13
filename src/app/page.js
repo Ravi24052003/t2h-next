@@ -24,7 +24,7 @@ export default function page() {
    <Navbar/>
    {/* <ImageSliderWithText/> */}
    <Herosection/>
-   <Itinerary/>
+   {/* <Itinerary/> */}
    <Card1/>
    <Card2/>
    <About/>

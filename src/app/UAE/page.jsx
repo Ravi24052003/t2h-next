@@ -4,9 +4,11 @@ import Navbar from '../Component/Navbar'
 import Footer from '../Component/Footer'
 import InternationalCarousel from '../Component/Internationalcarousel'
 import Image from 'next/image'
-import ExploreCarousel from '../Component/ExploreCarousel'
 import  { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, Filter } from "lucide-react";
+import FilterCom from './FilterCom'
+import ExploreCarousel from './ExploreCarousel'
+
 
 
 
@@ -57,56 +59,7 @@ function Page() {
 
 
 
-        {/* <div className="bg-gray-100 min-h-screen mx-10">
-      <main className="container   py-8">
-        <div className="mb-8  flex justify-center flex-wrap gap-[8] ">
-          
-          <img
-            src="/International/dubai-1.png"
-            alt="Dubai Skyline"
-            className="w-[24%] h-64 object-cover rounded-lg shadow-md"
-          />
-          <img
-            src="/International/dubai-1.png"
-            alt="Dubai Skyline"
-            className="w-[24%] h-64 object-cover rounded-lg shadow-md"
-          />
-          <img
-            src="/International/dubai-1.png"
-            alt="Dubai Skyline"
-            className="w-[24%] h-64 object-cover rounded-lg shadow-md"
-          />
-          <img
-            src="/International/dubai-1.png"
-            alt="Dubai Skyline"
-            className="w-[24%] h-64 object-cover rounded-lg shadow-md"
-          />
-          <img
-            src="/International/dubai-1.png"
-            alt="Dubai Skyline"
-            className="w-[24%] h-64 object-cover rounded-lg shadow-md"
-          />
-          <img
-            src="/International/dubai-1.png"
-            alt="Dubai Skyline"
-            className="w-[24%] h-64 object-cover rounded-lg shadow-md"
-          />
-          <img
-            src="/International/dubai-1.png"
-            alt="Dubai Skyline"
-            className="w-[24%] h-64 object-cover rounded-lg shadow-md"
-          />
-          <img
-            src="/International/dubai-1.png"
-            alt="Dubai Skyline"
-            className="w-[24%] h-64 object-cover rounded-lg shadow-md"
-          />
-        </div>
-        
-        
-      </main>
-      
-    </div> */}
+       
 <ExploreCarousel/>
 
 
@@ -124,7 +77,7 @@ function Page() {
 
 
 <div className='flex gap-3 mt-3 mb-3  justify-center  rounded-2xl  mx-[10%]'>
-<div className=' w-[60%]  '>
+<div className='w-full md:w-[60%]  '>
   {/* <img src="/International/Dubai-1.png "
   className='w-[100%] h-[397] rounded-lg'
   /> */}
@@ -160,71 +113,7 @@ function Page() {
     </div>
 
 {/* filter */}
-
-<div className="bg-pink-100 px-6 py-10 max-w-4xl mx-auto">
-      {/* <h2 className="text-2xl font-bold text-black mb-6">Trip Highlights</h2> */}
-
-      {/* Filter Buttons */}
-      <div className="flex flex-wrap p-2 rounded-xl gap-4 mb-6 bg-[#F4F6F9]">
-        {["All","Itinerary", "Adventure", "History", "Safari", "Luxury"].map((category) => (
-          <button
-            key={category}
-            onClick={() => setSelectedCategory(category)}
-            className={`px-4 py-2 rounded-lg font-medium ${
-              selectedCategory === category
-                ? "bg-blue-500 text-white"
-                : "bg-white text-gray-800 hover:bg-gray-300"
-            }`}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-        
-      {/* Highlights List */}
-      <ul className="list-disc pl-6 space-y-4 text-gray-700">
-        {filteredHighlights.map((highlight) => (
-          <div>
-          {/* <img
-          src={highlight.img}
-          alt="Dubai Skyline"
-          
-          className="rounded-md object-fill w-full h-[300px]"
-        /> */}
-          <li key={highlight.id}>{highlight.text}</li>
-          </div>
-        ))}
-      </ul>
-    </div>
-
-
-
-
-
-    <div className="space-y-2 bg-transparent rounded-xl">
-        {[
-          { day: 1, title: "Arrival in Dubai | Evening Dhow Cruise",text: "Explore Dubai's cutting-edge architectural wonders and marvel at the city's iconic skyline of skyscrapers and futuristic design." },
-          { day: 2, title: "Dubai City Tour | Visit the Burj Khalifa",text: "Sail along Dubai Marina aboard a traditional dhow cruise, enjoying views of the city's iconic marvels, while savoring a delicious dinner and cultural entertainment." },
-          { day: 3, title: "Dubai Desert Safari with BBQ Dinner",text: "Learn about Dubai's rich history at the Dubai Museum, exploring exhibits that showcase the city's cultural heritage and transformation over time." },
-          { day: 4, title: "Check-In at Atlantis The Palm Hotel | Explore Aquaventure Waterpark",text: "Indulge in a desert safari adventure, with activities like dune bashing in a 4x4, camel riding, sandboarding, and a traditional Bedouin-style camp experience." },
-          { day: 5, title: "Departure",text: "Stay at the iconic Atlantis The Palm resort, offering luxurious accommodations and access to the thrilling Aquaventure Waterpark." },
-        ].map((item) => (
-          <div key={item.day} className="border-none rounded-md">
-            <button
-              className="w-full border-none flex justify-between items-center px-4 py-2 bg-white text-black font-semibold rounded-xl"
-              onClick={() => toggleDay(item.day)}
-            >
-              <span  > <span className='bg-[#BF500E] rounded-lg p-1'>DAY {item.day}</span> - {item.title}</span>
-              {activeDay === item.day ? <ChevronUp /> : <ChevronDown />}
-            </button>
-            {activeDay === item.day && (
-              <div className="px-4 py-2 bg-white rounded-lg">
-                <p className="text-gray-600 rounded-xl">{item.text}...</p>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+<FilterCom/>
 
 {/* content */}
   <div className='px-1 mt-10'>
@@ -261,8 +150,8 @@ Due to Dubai’s extensive history of trade, the nations that actively brought i
 
   </div>
 </div>
-<div className='w-[40%]'>
-<img src="/International/dubai-4.png" alt="" className="w-[100%] rounded-md" />
+<div className='hidden sm:inline-block w-[40%]'>
+<img src="/International/dubai-4.png" alt="" className="w-[100%] rounded-md " />
 </div>
 
 </div>

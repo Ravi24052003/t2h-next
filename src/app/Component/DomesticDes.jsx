@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 function DomesticDes() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -47,9 +48,9 @@ function DomesticDes() {
               <p className="text-red-500 font-semibold text-lg mt-2">
                 4000.00 Per head
               </p>
-              <button className="mt-2 bg-red-500 text-white px-4 py-2 rounded-lg">
+              <Link href="/DomesticsPages/Andaman" ><button className="mt-2 bg-red-500 text-white px-4 py-2 rounded-lg">
                 Book Now
-              </button>
+              </button></Link>
             </div>
           </div>
 
@@ -63,9 +64,9 @@ function DomesticDes() {
               <p className="text-red-500 font-semibold text-lg mt-2">
                 4000.00 Per head
               </p>
-              <button className="mt-2 bg-red-500 text-white px-4 py-2 rounded-lg">
+              <Link href="/DomesticsPages/Kashmir" > <button className="mt-2 bg-red-500 text-white px-4 py-2 rounded-lg">
                 Book Now
-              </button>
+              </button></Link>
             </div>
             <img
               src={destination2Images[currentImageIndex2]}

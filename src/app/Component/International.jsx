@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 function International() {
   const destinations = [
@@ -8,24 +9,28 @@ function International() {
       description:
         "Discover the futuristic city of Dubai, known for its stunning skyline and luxury experiences.",
       image: "/Int-Carousel/Dubai-1.png",
+      link:"/Dubai"
     },
     {
       name: "Vietnam",
       description:
         "Explore the lush landscapes and vibrant culture of Vietnam, a gem in Southeast Asia.",
       image: "/Int-Carousel/Vietnam-1.png",
+      link:"/Vietnam"
     },
     {
       name: "Paris",
       description:
         "Experience the romance and beauty of Paris, the City of Light and love.",
       image: "/Int-Carousel/Paris-1.png",
+      link:"/Paris"
     },
     {
       name: "Maldives",
       description:
         "Relax in the tropical paradise of Maldives, famous for its crystal-clear waters and luxury resorts.",
       image: "/Int-Carousel/Maldives-1.png",
+      link:"/Maldives"
     },
   ];
 
@@ -70,9 +75,9 @@ function International() {
           <p className="mt-4 text-md md:text-lg sm:w-60 ">
             {destinations[activeIndex].description}
           </p>
-          <button className="mt-6 bg-red-500 px-2 sm:px-6 py-3 rounded-lg text-white font-semibold">
+          <Link href={destinations[activeIndex].link}><button className="mt-6 bg-red-500 px-2 sm:px-6 py-3 rounded-lg text-white font-semibold">
             Explore Now
-          </button>
+          </button></Link>
           </div>
 
           {/* Destination Cards Carousel */}
