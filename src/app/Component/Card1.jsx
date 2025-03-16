@@ -158,6 +158,7 @@ function Card1() {
       <h1 className="text-center font-bold text-2xl mb-5">
         Trending Destinations
       </h1>
+      
       <Slider {...settings} >
       {destinations.map((card, index) => (
           <div key={index}  className="px-2 ">
