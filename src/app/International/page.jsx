@@ -8,6 +8,7 @@ import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import International from "../Component/International";
 import InternationalCarousel from "../Component/Internationalcarousel";
+import Gallery from "../Component/Gallery";
 
 const page = () => {
   const destinations = [
@@ -76,6 +77,7 @@ const page = () => {
     <Navbar/>
     <InternationalCarousel/>
     <International/>
+    <Gallery/>
   <Footer/> 
     </>
   );

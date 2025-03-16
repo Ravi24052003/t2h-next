@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <nav className="bg-blue-950 p-4 sticky top-0 w-full z-10">
       <div className="max-w-screen-xl mx-auto px-4 flex justify-between items-center">
-      <Link href="#" className="flex items-center text-white ">
+      <Link href="/" className="flex items-center text-white ">
   {/* Logo */}
   <img src="/images/logo.png" alt="Website Logo" className="h-[40px] w-[200px]  md:w-[100%] mr-2" />
   

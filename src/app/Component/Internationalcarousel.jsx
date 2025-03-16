@@ -1,13 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
-import axios from "axios";
-import conf from "../Config";
+import Config from "../Config"; // Import your config file
 
-const InternationalCarousel = () => {
+function InternationalCarousel() {
   const [destinations, setDestinations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,28 +14,29 @@ const InternationalCarousel = () => {
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
-        const response = await axios.get(
-          `${conf.laravelBaseUrl}/public-itineraries-international`
+        const response = await fetch(
+          `${Config.laravelBaseUrl}/public-itineraries-international`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch destinations");
+        }
+        const data = await response.json();
+        console.log("API Response:", data); // Debugging log
+
+        // Process the data to add "http" or base URL before images
+        const processedData = (Array.isArray(data) ? data : data.data || []).map(
+          (item) => ({
+            ...item,
+            destination_images: (item.destination_images || []).map((image) =>
+              image.startsWith("http") ? image : `${Config.laravelBaseUrl}/${image}`
+            ),
+          })
         );
 
-        console.log("API Response:", response.data); // Debug API response
-
-        // Process data to include full URLs for images
-        const processedData = response.data.map((item) => ({
-          ...item,
-          destination_thumbnail: `${conf.laravelBaseUrl}/${item.destination_thumbnail}`,
-          destination_images: (item.destination_images || []).map((image) =>
-            image.startsWith("http")
-              ? image
-              : `${conf.laravelBaseUrl}/${image}`
-          ),
-        }));
-
         setDestinations(processedData);
+        setLoading(false);
       } catch (err) {
-        console.error("Error fetching data:", err);
-        setError("Failed to load destinations");
-      } finally {
+        setError(err.message);
         setLoading(false);
       }
     };
@@ -44,7 +44,7 @@ const InternationalCarousel = () => {
     fetchDestinations();
   }, []);
 
-  const sliderSettings = {
+  const settings = {
     arrows: false,
     infinite: true,
     autoplay: true,
@@ -68,56 +68,55 @@ const InternationalCarousel = () => {
   };
 
   if (loading) {
-    return <div className="text-center py-10">Loading...</div>;
+    return <div className="text-center">Loading...</div>;
   }
 
   if (error) {
-    return <div className="text-center text-red-500 py-10">{error}</div>;
+    return <div className="text-center text-red-500">Error: {error}</div>;
+  }
+
+  if (!Array.isArray(destinations) || destinations.length === 0) {
+    return <div className="text-center">No destinations available</div>;
   }
 
   return (
     <div className="w-full bg-pink-100 py-10">
-      <h2 className="text-center text-3xl font-semibold mb-6">
-        International Destinations
-      </h2>
-
+      <h2 className="text-center text-3xl font-semibold mb-6">International Destinations</h2>
       <div className="max-w-screen-xl mx-auto">
-        <Slider {...sliderSettings}>
+        <Slider {...settings}>
           {destinations.map((item, index) => (
             <div key={index} className="px-4">
-              <div className="bg-white shadow-lg rounded-2xl overflow-hidden h-[404px]">
+              <div className="bg-white shadow-lg rounded-2xl overflow-hidden">
                 {/* Image Section */}
                 <Slider
                   arrows={false}
                   autoplay={true}
-                  autoplaySpeed={3000} // Each card's images change every 3 seconds
+                  autoplaySpeed={3000}
                   infinite={true}
                 >
-                  {(item.destination_images || []).map((image, index) => (
+                  {item.destination_images.map((image, imgIndex) => (
                     <img
-                      key={index}
+                      key={imgIndex}
                       src={image}
-                      alt={item.title || "Destination"}
-                      className="w-full h-[50%] object-cover"
+                      alt={item.name || "Destination"}
+                      className="w-full h-60 object-cover"
                     />
                   ))}
                 </Slider>
                 {/* Details Section */}
                 <div className="p-4">
                   <h3 className="text-xl font-bold text-gray-800">
-                    {item.title}
+                    {item.selected_destination}
                   </h3>
                   <p className="text-sm text-gray-600 mt-1">{item.duration}</p>
-                  <p className="text-sm text-gray-600 mt-1">
-                    Destination: {item.selected_destination}
-                  </p>
+                  <p className="text-sm text-gray-600 mt-1">{item.organizer}</p>
                   <div className="flex justify-between items-center mt-4">
-                    <span className="text-lg font-semibold text-red-500">
+                    <span className="text-sm font-semibold text-red-500">
                       {item.pricing}
                     </span>
-                    <Link href={`${item.selected_destination}`}>
+                    <Link href={item.selected_destination || "#"}>
                       <button className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
-                        Explore
+                        Book Now
                       </button>
                     </Link>
                   </div>
@@ -129,6 +128,6 @@ const InternationalCarousel = () => {
       </div>
     </div>
   );
-};
+}
 
 export default InternationalCarousel;

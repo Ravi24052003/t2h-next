@@ -6,8 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 function Card2() {
   const card2 = [
-    { name: "name1", wedding: "Wedding Planner1", img: "/images/card1.png" },
-    { name: "name2", wedding: "Wedding Planner2", img: "/images/card1.png" },
+    { name: "name1", wedding: "Wedding Planner1", img: "/International/wedding1.jpg" },
+    { name: "name2", wedding: "Wedding Planner2", img: "/International/wedding.jpg" },
     { name: "name3", wedding: "Wedding Planner3", img: "/images/card1.png" },
     { name: "name4", wedding: "Wedding Planner4", img: "/images/card1.png" },
     { name: "name5", wedding: "Wedding Planner5", img: "/images/card1.png" },
@@ -56,10 +56,10 @@ function Card2() {
                   <h5 className="text-sm mt-2">{card.name}</h5>
                   <p className="text-lg">{card.wedding}</p>
                   <button className="bg-[#FFD7A9] text-red-900 py-2 px-6 rounded-2xl hover:bg-yellow-600 transition mt-9">
-                    Book Now
+                    Explore Now
                   </button>
                 </div>
-                <div className="w-1/3">
+                <div className="w-[40%]">
                   <img
                     src={card.img}
                     alt={card.name}

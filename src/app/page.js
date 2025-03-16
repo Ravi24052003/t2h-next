@@ -15,6 +15,7 @@ import Testimonial from "./Component/Testimonial";
 import ContactForm from "./Component/ContectForm";
 import Link from "next/link";
 import Itinerary from "./Component/Itinerary";
+import Gallery from "./Component/Gallery";
 
 
 
@@ -33,6 +34,7 @@ export default function page() {
    <Demostic/>
    <Resort/>
    <WhyChooseUs/>
+   <Gallery/>
    <Testimonial/> 
    <Services/>
    {/* <ContactForm/> */}

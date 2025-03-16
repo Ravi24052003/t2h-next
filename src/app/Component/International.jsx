@@ -1,50 +1,73 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Config from "../Config";
 
 function International() {
-  const destinations = [
-    {
-      name: "Dubai",
-      description:
-        "Discover the futuristic city of Dubai, known for its stunning skyline and luxury experiences.",
-      image: "/Int-Carousel/Dubai-1.png",
-      link:"/Dubai"
-    },
-    {
-      name: "Vietnam",
-      description:
-        "Explore the lush landscapes and vibrant culture of Vietnam, a gem in Southeast Asia.",
-      image: "/Int-Carousel/Vietnam-1.png",
-      link:"/Vietnam"
-    },
-    {
-      name: "Paris",
-      description:
-        "Experience the romance and beauty of Paris, the City of Light and love.",
-      image: "/Int-Carousel/Paris-1.png",
-      link:"/Paris"
-    },
-    {
-      name: "Maldives",
-      description:
-        "Relax in the tropical paradise of Maldives, famous for its crystal-clear waters and luxury resorts.",
-      image: "/Int-Carousel/Maldives-1.png",
-      link:"/Maldives"
-    },
-  ];
-
+  const [destinations, setDestinations] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prevIndex) =>
-        prevIndex === destinations.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 3000); // Change slide every 3 seconds
+    const fetchDestinations = async () => {
+      try {
+        const response = await fetch(
+          "https://admiredashboard.theholistay.in/public-itineraries-international"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch destinations");
+        }
+        const data = await response.json();
+  
+        // Process the data to ensure proper format
+        const processedData = (Array.isArray(data) ? data : data.data || []).map(
+          (item) => ({
+            name: item.selected_destination || "Unknown",
+            description: item.description || "No description available.",
+            image: item.destination_thumbnail
+              ? `https://admiredashboard.theholistay.in/${item.destination_thumbnail}`
+              : "/placeholder.png", // Construct full URL or use a placeholder
+            // link: `/destinations/${item.selected_destination || "#"}`, // Use slug for dynamic link
+            link: item.selected_destination
+          })
+        );
+  
+        setDestinations(processedData);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+  
+    fetchDestinations();
+  }, []);
 
-    return () => clearInterval(interval); // Cleanup on component unmount
-  }, [destinations.length]);
+
+  useEffect(() => {
+    if (destinations.length > 0) {
+      const interval = setInterval(() => {
+        setActiveIndex((prevIndex) =>
+          prevIndex === destinations.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 3000); // Change slide every 3 seconds
+
+      return () => clearInterval(interval); // Cleanup on component unmount
+    }
+  }, [destinations]);
+
+  if (loading) {
+    return <div className="text-center">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center text-red-500">Error: {error}</div>;
+  }
+
+  if (!Array.isArray(destinations) || destinations.length === 0) {
+    return <div className="text-center">No destinations available</div>;
+  }
 
   const visibleDestinations = [
     destinations[(activeIndex - 1 + destinations.length) % destinations.length], // Previous
@@ -68,16 +91,18 @@ function International() {
             backgroundImage: `url(${destinations[activeIndex].image})`,
           }}
         >
-          <div className="text-white  bg-black bg-opacity-60 p-5 rounded-lg sm:inline-block">
-          <h1 className="text-xl md:text-5xl text-white  font-bold mt-8">
-            {destinations[activeIndex].name}
-          </h1>
-          <p className="mt-4 text-md md:text-lg sm:w-60 ">
-            {destinations[activeIndex].description}
-          </p>
-          <Link href={destinations[activeIndex].link}><button className="mt-6 bg-red-500 px-2 sm:px-6 py-3 rounded-lg text-white font-semibold">
-            Explore Now
-          </button></Link>
+          <div className="text-white bg-black bg-opacity-40 p-5 rounded-lg sm:inline-block">
+            <h1 className="text-xl md:text-5xl text-white font-bold mt-8">
+              {destinations[activeIndex].name}
+            </h1>
+            <p className="mt-4 text-md md:text-lg sm:w-60 ">
+              {destinations[activeIndex].description}
+            </p>
+            <Link href={destinations[activeIndex].link}>
+              <button className="mt-6 bg-red-500 px-2 sm:px-6 py-3 rounded-lg text-white font-semibold">
+                Explore Now
+              </button>
+            </Link>
           </div>
 
           {/* Destination Cards Carousel */}
@@ -110,16 +135,20 @@ function International() {
 
         {/* Right Section */}
         <div className="lg:w-1/3 bg-red-900 text-white p-6 rounded-lg flex flex-col items-center space-y-4 mt-6 lg:mt-0">
-          <h3 className="text-lg font-semibold">Company Name</h3>
-          <h2 className="text-2xl font-bold">Wedding Planner</h2>
+          <h3 className="text-lg font-semibold">Pulse Events and Wedding</h3>
+          <h2 className="text-2xl font-bold">
+            Pulse Events and Wedding By Sunny Sabharwal
+          </h2>
           <img
-            src="/images/int3.png"
+            src="/wedding/wedding2.png"
             alt="Wedding Couple"
             className="w-full h-56 object-cover rounded-lg"
           />
-          <button className="bg-red-500 px-6 py-2 rounded-lg text-white">
-            Book Now
-          </button>
+          <Link href="https://www.pulseeventsindia.com/">
+            <button className="bg-red-500 px-6 py-2 rounded-lg text-white">
+              Explore Now
+            </button>
+          </Link>
         </div>
       </div>
     </div>
@@ -127,4 +156,3 @@ function International() {
 }
 
 export default International;
-    

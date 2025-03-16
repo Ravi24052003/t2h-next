@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 function About() {
     return (
@@ -11,9 +12,9 @@ function About() {
                 <p className="text-gray-700 mb-6">
                 Triptohoneymoon.com is an expert travel brand under Admire Tours & Holidays Pvt Ltd, dedicated exclusively to crafting exceptional honeymoon experiences for couples across domestic & international destinations. Our mission is to transform your honeymoon dreams into cherished memories by offering personalized, luxurious, and hassle-free honeymoon packages tailored to your unique preferences.
                 </p>
-                <button className="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600 transition">
+                <Link href="/AboutUs"><button className="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600 transition">
                     Know More
-                </button>
+                </button></Link>
             </div>
 
             {/* Right Content */}

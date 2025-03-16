@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FaHeart, FaStar, FaPhone, FaTag } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 function Resort() {
   const resorts = [
@@ -123,9 +124,9 @@ function Resort() {
                 </div>
                 <p className="text-sm text-gray-500">{resort.category}</p>
                 <div className="mt-4 flex items-center justify-between">
-                  <span className="text-lg font-bold">{resort.price}</span>
+                  <span className="text-lg font-bold text-red-500"> Request for Quotation</span>
                   <button className="bg-red-500 text-white text-sm px-4 py-2 rounded-lg shadow">
-                    Book now
+                  <Phone className="text-white h-5 " />
                   </button>
                 </div>
               </div>

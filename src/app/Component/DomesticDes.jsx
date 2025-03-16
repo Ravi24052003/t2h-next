@@ -1,28 +1,74 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function DomesticDes() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [currentImageIndex2, setCurrentImageIndex2] = useState(0);
+  const [destinations, setDestinations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Arrays of images for each destination
-  const destination1Images = ["/images/int1.png", "/images/int2.png", "/images/int1.png"];
-  const destination2Images = ["/Domestic/Kashmir-4.png", "/Domestic/Kashmir-5.png", "/images/kerala1.jpeg"];
-
-  // Change images every 3 seconds
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % destination1Images.length);
-      setCurrentImageIndex2((prev) => (prev + 1) % destination2Images.length);
-    }, 3000);
+    const fetchDestinations = async () => {
+      try {
+        const response = await fetch(
+          "https://admiredashboard.theholistay.in/public-itineraries-domestic"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch destinations");
+        }
+        const data = await response.json();
 
-    return () => clearInterval(interval);
+        // Process the API response
+        const processedData = (Array.isArray(data) ? data : data.data || []).map((item) => ({
+          destination: item.selected_destination || "Unknown",
+          images: [
+            item.destination_thumbnail
+              ? `https://admiredashboard.theholistay.in/${item.destination_thumbnail}`
+              : "/placeholder.png",
+          ],
+          content: item.description || "No description available.",
+        }));
+
+        setDestinations(processedData);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchDestinations();
   }, []);
+
+  // Split data into two groups for the two carousels
+  const d1 = destinations.slice(0, Math.ceil(destinations.length / 2));
+  const d2 = destinations.slice(Math.ceil(destinations.length / 2));
+
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    arrows: false,
+  };
+
+  if (loading) {
+    return <div className="text-center">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center text-red-500">Error: {error}</div>;
+  }
 
   return (
     <div className="bg-pink-100 p-6">
-      {/* Container */}
+      {/* Header */}
       <div className="flex justify-between my-4 mx-auto max-w-6xl">
         <h2 className="text-xl text-start font-semibold text-gray-700">
           Domestic Destination
@@ -32,62 +78,82 @@ function DomesticDes() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {/* Left Section */}
-        <div className="md:col-span-2">
-          {/* Destination 1 */}
-          <div className="grid md:grid-cols-2 gap-4 items-center bg-[#FFAD9E] px-4 p-4 md:pb-0 md:mb-0 mb-5 rounded-lg md:rounded-b-none">
-            <img
-              src={destination1Images[currentImageIndex]}
-              alt="Destination 1"
-              className="w-full h-56 object-cover rounded-lg"
-            />
-            <div>
-              <h3 className="text-lg font-semibold">Andaman</h3>
-              <p className="text-sm text-gray-600">
-              Pristine beaches, turquoise waters, lush forests, and serene islands.
-              </p>
-              <p className="text-red-500 font-semibold text-lg mt-2">
-                4000.00 Per head
-              </p>
-              <Link href="/DomesticsPages/Andaman" ><button className="mt-2 bg-red-500 text-white px-4 py-2 rounded-lg">
-                Book Now
-              </button></Link>
-            </div>
-          </div>
+        <div className="md:col-span-2 bg-[#FFAD9E] rounded-lg">
+          {/* Destination 1 Carousel */}
+          <Slider {...sliderSettings}>
+            {d1.map((item, index) => (
+              <div key={index}>
+                <div className="flex flex-row gap-4 items-center bg-[#FFAD9E] px-4 pt-4 rounded-t-lg">
+                  <div className="w-[50%]">
+                    <img
+                      src={item.images[0]}
+                      alt={`Image of ${item.destination}`}
+                      className="h-56 object-cover rounded-lg w-full"
+                    />
+                  </div>
+                  <div className="w-[50%]">
+                    <h3 className="text-lg font-semibold">{item.destination}</h3>
+                    <p className="text-sm text-gray-600">{item.content}</p>
+                    <p className="text-red-500 font-semibold text-lg mt-2">
+                      Request for Quotation
+                    </p>
+                    <Link href={`/DomesticsPages/${item.destination}`}>
+                      <button className="mt-2 bg-red-500 text-white px-4 py-2 rounded-lg">
+                        Explore Now
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Slider>
 
-          {/* Destination 2 */}
-          <div className="grid md:grid-cols-2 gap-4 items-center bg-[#FFAD9E] px-4 p-4 md:pt-0 rounded-lg md:rounded-t-none">
-            <div>
-              <h3 className="text-lg font-semibold">Kashmir</h3>
-              <p className="text-sm text-gray-600">
-              Beautiful mountains, green valleys, calm lakes, and snowy landscapes.
-              </p>
-              <p className="text-red-500 font-semibold text-lg mt-2">
-                4000.00 Per head
-              </p>
-              <Link href="/DomesticsPages/Kashmir" > <button className="mt-2 bg-red-500 text-white px-4 py-2 rounded-lg">
-                Book Now
-              </button></Link>
-            </div>
-            <img
-              src={destination2Images[currentImageIndex2]}
-              alt="Destination 2"
-              className="w-full h-56 object-cover rounded-lg"
-            />
-          </div>
+          {/* Destination 2 Carousel */}
+          <Slider {...{ ...sliderSettings, rtl: true, autoplaySpeed: 4000 }}>
+            {d2.map((item, index) => (
+              <div key={index}>
+                <div className="flex flex-row gap-4 items-center bg-[#FFAD9E] px-4 pb-4 rounded-b-lg">
+                  <div className="w-[50%]">
+                    <h3 className="text-lg font-semibold">{item.destination}</h3>
+                    <p className="text-sm text-gray-600">{item.content}</p>
+                    <p className="text-red-500 font-semibold text-lg mt-2">
+                      Request for Quotation
+                    </p>
+                    <Link href={`/DomesticsPages/${item.destination}`}>
+                      <button className="mt-2 bg-red-500 text-white px-4 py-2 rounded-lg">
+                        Explore Now
+                      </button>
+                    </Link>
+                  </div>
+                  <div className="w-[50%]">
+                    <img
+                      src={item.images[0]}
+                      alt={`Image of ${item.destination}`}
+                      className="h-56 object-cover rounded-lg w-full"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Slider>
         </div>
 
         {/* Right Section */}
         <div className="bg-red-900 text-white p-6 rounded-lg flex flex-col items-center space-y-4">
-          <h3 className="text-lg font-semibold">Company Name</h3>
-          <h2 className="text-2xl font-bold">Wedding Planner</h2>
+          <h3 className="text-lg font-semibold">
+            Shubh Muhurat Wedding Bells & Events, Delhi
+          </h3>
+          <h2 className="text-2xl font-bold">Luxury Wedding Planners</h2>
           <img
-            src="/images/int3.png"
+            src="/wedding/wedding3.png"
             alt="Wedding Couple"
             className="w-full h-56 object-cover rounded-lg"
           />
-          <button className="bg-red-500 px-6 py-2 rounded-lg text-white">
-            Book Now
-          </button>
+          <Link href="https://www.smlwindia.com/">
+            <button className="bg-red-500 px-6 py-2 rounded-lg text-white">
+              Explore Now
+            </button>
+          </Link>
         </div>
       </div>
     </div>
