@@ -187,7 +187,7 @@ function Card1() {
               </div>
               <div className="mt-2 text-center">
                 <h3 className="text-xl font-semibold">{card.selected_destination}</h3>
-                <p className="text-xs">{card.description || "No Discription Available from Api"}</p>
+                <p className="text-xs">{card.title || "No Discription Available from Api"}</p>
                 <div className="mt-4 flex  gap-3  w-[100%]">
                   {/* <Link href="/Contactus "><div className=" ml-5 w-[1/4] rounded-md bg-red-600 p-2">
                     <Phone className="text-white w-6 h-6 " />
