@@ -81,7 +81,7 @@ export default function FilterCom() {
           <li>Dubai Desert Conservation Reserve</li>
           <li>Al Marmoom Desert Conservation Reserve</li>
           <li>Arabian Adventures Camp</li>
-          <li>Private Desert Camp Experiences</li>
+          <li>Private Desert Camp Experiences.</li>
         </ul>
       </div>
     ),
