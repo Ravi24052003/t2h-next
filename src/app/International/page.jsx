@@ -9,6 +9,7 @@ import Footer from "../Component/Footer";
 import International from "../Component/International";
 import InternationalCarousel from "../Component/Internationalcarousel";
 import Gallery from "../Component/Gallery";
+import Herosection from "../Component/Herosection";
 
 const page = () => {
   const destinations = [
@@ -75,6 +76,7 @@ const page = () => {
   return (
     <>
     <Navbar/>
+    <Herosection/>
     <InternationalCarousel/>
     <International/>
     <Gallery/>

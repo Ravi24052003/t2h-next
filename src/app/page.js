@@ -1,10 +1,10 @@
 import Navbar from "./Component/Navbar";
 import ImageSliderWithText from "./Component/ImageSliderWithText";
 import Herosection from "./Component/Herosection";
-import Card1 from "./Component/Card1";
-import Card2 from "./Component/Card2";
+import TrendingDestinations from "./Component/TrendingDestinations";
+import TrendingWeddingDestinations from "./Component/TrendingWeddingDestinations";
 import About from "./Component/About";
-import BigCarousel from "./Component/BigCarousel";
+import PopularDestination from "./Component/PopularDestination";
 import InternationalDes from "./Component/DomesticDes";
 import Demostic from "./Component/International";
 import Resort from "./Component/Resort";
@@ -12,9 +12,6 @@ import Services from "./Component/Services";
 import Footer from "./Component/Footer";
 import WhyChooseUs from "./Component/WhyChooseUs";
 import Testimonial from "./Component/Testimonial";
-import ContactForm from "./Component/ContectForm";
-import Link from "next/link";
-import Itinerary from "./Component/Itinerary";
 import Gallery from "./Component/Gallery";
 
 
@@ -25,16 +22,15 @@ export default function page() {
    <Navbar/>
    {/* <ImageSliderWithText/> */}
    <Herosection/>
-   {/* <Itinerary/> */}
-   <Card1/>
-   <Card2/>
+   <TrendingDestinations/>
+   <TrendingWeddingDestinations/>
    <About/>
-   <BigCarousel/>
+   <PopularDestination/>
    <InternationalDes/>
    <Demostic/>
    <Resort/>
-   <WhyChooseUs/>
    <Gallery/>
+   <WhyChooseUs/>
    <Testimonial/> 
    <Services/>
    {/* <ContactForm/> */}

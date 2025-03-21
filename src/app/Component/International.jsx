@@ -144,7 +144,7 @@ function International() {
             alt="Wedding Couple"
             className="w-full h-56 object-cover rounded-lg"
           />
-          <Link href="https://www.pulseeventsindia.com/">
+          <Link href="https://www.pulseeventsindia.com/" target="blank">
             <button className="bg-red-500 px-6 py-2 rounded-lg text-white">
               Explore Now
             </button>

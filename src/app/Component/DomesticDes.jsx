@@ -54,7 +54,7 @@ function DomesticDes() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 15000,
     arrows: false,
   };
 
@@ -109,7 +109,7 @@ function DomesticDes() {
           </Slider>
 
           {/* Destination 2 Carousel */}
-          <Slider {...{ ...sliderSettings, rtl: true, autoplaySpeed: 4000 }}>
+          <Slider {...{ ...sliderSettings, rtl: true, autoplaySpeed: 15000 }}>
             {d2.map((item, index) => (
               <div key={index}>
                 <div className="flex flex-row gap-4 items-center bg-[#FFAD9E] px-4 pb-4 rounded-b-lg">
@@ -149,7 +149,7 @@ function DomesticDes() {
             alt="Wedding Couple"
             className="w-full h-56 object-cover rounded-lg"
           />
-          <Link href="https://www.smlwindia.com/">
+          <Link href="https://www.smlwindia.com/" target="blank">
             <button className="bg-red-500 px-6 py-2 rounded-lg text-white">
               Explore Now
             </button>

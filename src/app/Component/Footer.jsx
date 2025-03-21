@@ -28,17 +28,17 @@ function Footer() {
           <h3 className="font-bold text-lg mb-4">Quick links</h3>
           <ul>
             <li className="mb-2">
-              <a href="#" className="hover:underline">
+              <Link href="#" className="hover:underline">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="mb-2">
-              <a href="/Card1" className="hover:underline">
+              <a href="#TrendingDestinations" className="hover:underline">
                 Trending Destination
               </a>
             </li>
             <li className="mb-2">
-              <a href="#" className="hover:underline">
+              <a href="#PopularDestination" className="hover:underline">
                 Popular Destination
               </a>
             </li>
