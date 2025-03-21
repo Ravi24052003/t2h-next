@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const ExploreCarousel = () => {
+const ExploreCarousel = ({ destination }) => {
   const [images, setImages] = useState([]);
 
   // Fetch destination images from the API
@@ -19,16 +19,21 @@ const ExploreCarousel = () => {
         const data = await response.json();
         console.log("API Response:", data); // Log the API response for debugging
 
-        // Ensure destination_images exists and construct full URLs
-        const allImages = (Array.isArray(data) ? data : data.data || []).flatMap(
-          (destination) => (destination.destination_images || []).map((image) =>
+        // Filter images based on the selected destination
+        const filteredData = (Array.isArray(data) ? data : data.data || []).filter(
+          (item) => item.selected_destination === destination
+        );
+
+        // Extract destination images and construct full URLs
+        const allImages = filteredData.flatMap((item) =>
+          (item.destination_images || []).map((image) =>
             image.startsWith("http")
               ? image
               : `https://admiredashboard.theholistay.in/${image}`
           )
         );
 
-        console.log("Processed Images:", allImages); // Log processed images
+        console.log(`Images for ${destination}:`, allImages); // Log filtered images
         setImages(allImages);
       } catch (error) {
         console.error("Error fetching images:", error);
@@ -36,7 +41,7 @@ const ExploreCarousel = () => {
     };
 
     fetchImages();
-  }, []);
+  }, [destination]);
 
   const PrevButton = ({ onClick }) => (
     <button
@@ -75,7 +80,9 @@ const ExploreCarousel = () => {
 
   return (
     <div className="px-4 py-10 bg-pink-100 w-[90%] mx-auto">
-      <h2 className="text-3xl font-bold text-left mb-6">Explore Dubai</h2>
+      <h2 className="text-3xl font-bold text-left mb-6">
+        Explore {destination}
+      </h2>
       {images.length === 0 ? (
         <p className="text-center text-gray-500">No images available</p>
       ) : (
@@ -90,7 +97,7 @@ const ExploreCarousel = () => {
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <div className="text-center p-4">
-                    <h3 className="text-xl font-bold mb-2">Dubai</h3>
+                    <h3 className="text-xl font-bold mb-2">{destination}</h3>
                     <p className="text-sm">Beautiful destination</p>
                   </div>
                 </div>

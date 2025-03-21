@@ -60,7 +60,7 @@ function Page() {
 
 
        
-<ExploreCarousel/>
+<ExploreCarousel  destination="UAE"/>
 
 
 {/* Trip Highlight */}

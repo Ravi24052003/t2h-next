@@ -49,7 +49,7 @@ function Page() {
       </div>
 
       {/* Explore Carousel */}
-      <ExploreSriLanka />
+      <ExploreSriLanka destination="Sri-Lanka" />
 
       {/* Trip Highlights */}
       <div className="mt-10">

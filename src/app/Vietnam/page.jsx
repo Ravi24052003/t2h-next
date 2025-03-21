@@ -63,7 +63,7 @@ function Page() {
 
 
        
-<ExploreCarViet/>
+<ExploreCarViet destination="Vietnam"/>
 
 
 {/* Trip Highlight */}

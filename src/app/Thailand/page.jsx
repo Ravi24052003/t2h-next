@@ -62,7 +62,7 @@ function Page() {
 
 
        
-<ExploreCarThai/>
+<ExploreCarThai />
 
 
 {/* Trip Highlight */}
