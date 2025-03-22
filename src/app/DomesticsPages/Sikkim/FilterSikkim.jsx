@@ -27,8 +27,8 @@ export default function FilterSikkim() {
               className="w-full border-none flex justify-between items-center px-4 py-2 bg-white text-black font-semibold rounded-xl"
               onClick={() => toggleDay(item.day)}
             >
-              <span>
-                <span className="bg-green-500 rounded-lg p-1">DAY {item.day}</span> - {item.title}
+              <span className="text-start">
+                <span className="bg-red-500 rounded-lg p-1">DAY {item.day}</span> - {item.title}
               </span>
               {activeDay === item.day ? <ChevronUp /> : <ChevronDown />}
             </button>
@@ -71,7 +71,7 @@ export default function FilterSikkim() {
             <label htmlFor="People" className="block text-sm font-medium text-gray-700">Number of People</label>
             <input type="number" id="tickets" name="tickets" className="w-full px-4 py-2 border rounded-lg" placeholder="Enter number of People" />
           </div>
-          <button type="submit" className="px-4 py-2 bg-green-500 text-white rounded-lg">Book Now</button>
+          <button type="submit" className="px-4 py-2 bg-red-500 text-white rounded-lg">Book Now</button>
         </form>
       </div>
     ),
@@ -114,7 +114,7 @@ export default function FilterSikkim() {
               />
               <h3 className="font-bold text-lg">{hotel.name}</h3>
               <p className="text-gray-600">{hotel.description}</p>
-              <button className="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg">
+              <button className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg">
                 Book Now
               </button>
             </div>
@@ -133,7 +133,7 @@ export default function FilterSikkim() {
     ));
 
   return (
-    <div className="bg-green-100 px-6 py-10 max-w-4xl mx-auto">
+    <div className="bg-pink-100 px-6 py-10 max-w-4xl mx-auto">
       {/* Filter Buttons */}
       <div className="flex flex-wrap p-2 rounded-xl gap-4 mb-6 bg-[#F4F6F9]">
         {["All", ...Object.keys(categoryLogic)].map((category) => (
@@ -142,7 +142,7 @@ export default function FilterSikkim() {
             onClick={() => setSelectedCategory(category)}
             className={`px-4 py-2 rounded-lg font-medium ${
               selectedCategory === category
-                ? "bg-green-500 text-white"
+                ? "bg-red-500 text-white"
                 : "bg-white text-gray-800 hover:bg-gray-300"
             }`}
           >

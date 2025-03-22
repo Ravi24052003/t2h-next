@@ -27,7 +27,7 @@ export default function FilterPar() {
               className="w-full border-none flex justify-between items-center px-4 py-2 bg-white text-black font-semibold rounded-xl"
               onClick={() => toggleDay(item.day)}
             >
-              <span>
+              <span className="text-start">
                 <span className="bg-red-600 rounded-lg p-1">DAY {item.day}</span> - {item.title}
               </span>
               {activeDay === item.day ? <ChevronUp /> : <ChevronDown />}
@@ -137,7 +137,7 @@ export default function FilterPar() {
     ));
 
   return (
-    <div className="bg-pink-100 px-6 py-10 max-w-4xl mx-auto">
+    <div className="bg-pink-100 py-10 max-w-4xl mx-auto">
       {/* Filter Buttons */}
       <div className="flex flex-wrap p-2 rounded-xl gap-4 mb-6 bg-[#F4F6F9]">
         {["All", ...Object.keys(categoryLogic)].map((category) => (

@@ -79,7 +79,7 @@ const ExploreCarousel = ({ destination }) => {
   };
 
   return (
-    <div className="px-4 py-10 bg-pink-100 w-[90%] mx-auto">
+    <div className="px-4 py-10 bg-pink-100 w-[100%] md:w-[90%] mx-auto">
       <h2 className="text-3xl font-bold text-left mb-6">
         Explore {destination}
       </h2>
@@ -88,7 +88,7 @@ const ExploreCarousel = ({ destination }) => {
       ) : (
         <Slider {...settings} className="gap-5">
           {images.map((image, index) => (
-            <div key={index} className="p-2 px-9">
+            <div key={index} className="p-2 px-3">
               <div className="relative group w-[1/4] h-[250px] rounded-lg overflow-hidden shadow-lg">
                 <img
                   src={image}

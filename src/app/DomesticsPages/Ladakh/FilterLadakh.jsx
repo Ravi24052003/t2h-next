@@ -132,7 +132,7 @@ export default function FilterLadakh() {
     ));
 
   return (
-    <div className="bg-pink-100 px-6 py-10 max-w-4xl mx-auto">
+    <div className="bg-pink-100  py-10 max-w-4xl">
       {/* Filter Buttons */}
       <div className="flex flex-wrap p-2 rounded-xl gap-4 mb-6 bg-[#F4F6F9]">
         {["All", ...Object.keys(categoryLogic)].map((category) => (

@@ -102,8 +102,8 @@ function Page() {
 {/* <h1 className='mx-40 mt-10 text-left text-4xl font-bold'>Explore Dubai</h1>  */}
 
 
-<div className='flex gap-3 mt-3 mb-3  justify-center  rounded-2xl  mx-[10%]'>
-<div className=' w-[60%]  '>
+<div className='flex gap-3 mt-3 mb-3  justify-center  rounded-2xl  mx-[5%]'>
+<div className=' w-full md:w-[60%]  '>
   {/* <img src="/International/Dubai-1.png "
   className='w-[100%] h-[397] rounded-lg'
   /> */}
@@ -140,7 +140,7 @@ function Page() {
 
   
 </div>
-<div className='w-[40%]'>
+<div className='w-[40%] hidden sm:inline-block'>
 <img src="/International/Paris-4.png" alt="" className="w-[100%] rounded-md" />
 </div>
 

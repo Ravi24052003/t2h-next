@@ -83,11 +83,11 @@ const ExploreCarThai = () => {
   ];
 
   return (
-    <div className="px-4 py-10 bg-pink-100 w-[90%] mx-auto">
+    <div className="px-4 py-10 bg-pink-100 w-[100%] md:w-[90%] mx-auto">
       <h2 className="text-3xl  font-bold text-left mb-6">Explore Thailand</h2>
       <Slider {...settings} className="gap-5">
         {cards.map((card) => (
-          <div key={card.id} className="p-2 px-9 ">
+          <div key={card.id} className="p-2 px-3 ">
             <div className="relative group w-[1/4] h-[250px] rounded-lg overflow-hidden shadow-lg">
               <img
                 src={card.image}

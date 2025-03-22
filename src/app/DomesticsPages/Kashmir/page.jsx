@@ -53,9 +53,9 @@ function Page() {
 
       {/* Trip Highlights */}
       <div className="mt-10">
-        <div className="flex gap-3 mb-3 justify-center rounded-2xl mx-[10%]">
+        <div className="flex gap-3 mb-3 justify-center rounded-2xl mx-[5%]">
           {/* Left Section */}
-          <div className="w-[60%]">
+          <div className="w-full md:w-[60%]">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">Trip Highlights</h2>
             <ul className="list-disc pl-6 space-y-4 text-gray-700">
               <li>Glide through the serene waters of Dal Lake on a traditional Shikara.</li>
@@ -70,7 +70,7 @@ function Page() {
           </div>
 
           {/* Right Section */}
-          <div className="w-[40%]">
+          <div className="w-[40%] hidden sm:inline-block">
             <img src="/International/Kashmir-valley.png" alt="Kashmir Valley" className="w-full rounded-md" />
           </div>
         </div>

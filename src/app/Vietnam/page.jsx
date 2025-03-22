@@ -80,7 +80,7 @@ function Page() {
 
 
 <div className='flex gap-3 mt-3 mb-3  justify-center  rounded-2xl  mx-[10%]'>
-<div className=' w-[60%]  '>
+<div className='w-full md:w-[60%]  '>
   {/* <img src="/International/Dubai-1.png "
   className='w-[100%] h-[397] rounded-lg'
   /> */}
@@ -117,7 +117,7 @@ function Page() {
 {/* content */}
   
 </div>
-<div className='w-[40%]'>
+<div className='w-[40%] hidden sm:inline-block'>
 <img src="/International/Vietnam-2.png" alt="" className="w-[100%] rounded-md" />
 </div>
 
