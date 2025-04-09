@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import Footer from "@/app/Component/Footer";
-import Navbar from "@/app/Component/Navbar";
 import Image from "next/image";
 import { ChevronDown, ChevronUp, Filter } from "lucide-react";
 import FilterSriLanka from "./FilterSriLanka";
 import ExploreSriLanka from "./ExploreSriLanka";
 import InternationalCarousel from "../Component/Internationalcarousel";
+import Footer from "../Component/Footer";
+import Navbar from "../Component/Navbar";
 
 const tripHighlights = [
   { id: 1, category: "Adventure", text: "Experience an adrenaline rush with white-water rafting in Kitulgala.", img: "/International/SriLanka-1.png" },

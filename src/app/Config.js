@@ -1,5 +1,5 @@
 const Config = {
-  laravelBaseUrl: "https://admiredashboard.theholistay.in"
+  laravelBaseUrl: "https://t2hdashboard.theholistay.in"
 }
 
 export default Config;

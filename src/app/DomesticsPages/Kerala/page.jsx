@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import Footer from "@/app/Component/Footer";
-import Navbar from "@/app/Component/Navbar";
+import Footer from "../../Component/Footer";
+import Navbar from "../../Component/Navbar";
 import Image from "next/image";
 import { ChevronDown, ChevronUp, Filter } from "lucide-react";
 import FilterKerala from "./FilterKerala";
 import ExploreKerala from "./ExploreKerala";
-import DomesticCarousel from "@/app/Component/DomesticCarousel";
+import DomesticCarousel from "../../Component/DomesticCarousel";
 
 const tripHighlights = [
   { id: 1, category: "Nature", text: "Cruise through the serene backwaters of Alleppey on a traditional houseboat.", img: "/International/Kerala-1.png" },

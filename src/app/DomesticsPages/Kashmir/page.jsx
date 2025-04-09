@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import Footer from "@/app/Component/Footer";
-import Navbar from "@/app/Component/Navbar";
-import DomesticCarousel from "@/app/Component/DomesticCarousel";
+import Footer from "../../Component/Footer";
+import DomesticCarousel from "../../Component/DomesticCarousel";
 import Image from "next/image";
 import { ChevronDown, ChevronUp, Filter } from "lucide-react";
 import FilterKashmir from "./FilterKashmir";
 import ExploreKashmir from "./ExploreKashmir";
+import Navbar from "../../Component/Navbar";
 
 const tripHighlights = [
   { id: 1, category: "Nature", text: "Witness the breathtaking beauty of Dal Lake and its iconic Shikara rides.", img: "/International/Kashmir-1.png" },
