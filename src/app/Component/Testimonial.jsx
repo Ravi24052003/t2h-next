@@ -1,54 +1,42 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function Testimonials() {
-  const testimonials = [
-    {
-      name: "Asif Khan",
-      review:
-        "Our honeymoon was absolutely magical! The team took care of every detail, and we couldn’t have asked for a better experience.",
-      location: "Maldives",
-      image: "/images/card1.png",
-    },
-    {
-      name: "isha",
-      review:
-        "Dubai was an amazing experience! The desert safari, Burj Khalifa, and shopping were unforgettable. Highly recommend this trip!",
-      location: "Dubai",
-      image: "/Domestic/kashmir-4.png",
-    },
-    {
-      name: "Sophia",
-      review:
-        "Thanks to this amazing team, we enjoyed a luxurious and stress-free honeymoon. Highly recommended!",
-      location: "Santorini, Greece",
-      image: "/images/card2.png",
-    },
-    {
-      name: "Siya",
-      review:
-        "The packages were perfectly planned and within our budget. We felt so special throughout our trip. Thank you!",
-      location: "Bali, Indonesia",
-      image: "/images/card3.png",
-    },
-    {
-      name: "Ravi",
-      review:
-        "Paris was magical! The Eiffel Tower, Seine River, and charming streets made it a dream trip. Loved it!",
-      location: "Paris",
-      image: "/Domestic/kashmir-3.png",
-    },
-    {
-      name: "Rahul singh",
-      review:
-        "New York was incredible! Times Square, Central Park, and the Statue of Liberty made it unforgettable. Must visit!",
-      location: "New York",
-      image: "/Domestic/kashmir-5.png",
-    },
-  ];
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await fetch(
+          "https://t2hdashboard.theholistay.in/public-image-text-testimonials"
+        );
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+        const data = await response.json();
+        console.log("Fetched data:", data); // Debugging: log the fetched data
+        const baseURL = "https://t2hdashboard.theholistay.in/";
+        const updatedData = data.map((item) => ({
+          ...item,
+          image: item.image.startsWith("http") ? item.image : `${baseURL}${item.image}`,
+        }));
+        setTestimonials(updatedData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchTestimonials();
+  }, []);
+  
+  
 
   const settings = {
     arrows: false,
@@ -62,6 +50,22 @@ function Testimonials() {
       { breakpoint: 768, settings: { slidesToShow: 1 } },
     ],
   };
+
+  if (loading) {
+    return (
+      <div className="bg-pink-100 py-10 text-center">
+        <h2 className="text-3xl font-bold text-gray-800">Loading testimonials...</h2>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-pink-100 py-10 text-center">
+        <h2 className="text-3xl font-bold text-red-500">Error: {error}</h2>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-pink-100 py-10">
@@ -82,7 +86,7 @@ function Testimonials() {
                   {testimonial.name}
                 </h3>
                 <p className="text-sm text-center text-gray-500 italic mt-2">
-                  "{testimonial.review}"
+                  "{testimonial.text}"
                 </p>
                 <p className="text-center text-gray-600 mt-4">
                   <strong>{testimonial.location}</strong>
