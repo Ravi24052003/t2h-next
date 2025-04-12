@@ -1,22 +1,36 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
-const photos = [
-    { id: 1, src: "/Gallery/c1-1.jpg", title: "Romantic Sunset" },
-    { id: 2, src: "/Gallery/c1-2.jpg", title: "Beach Walks" },
-    { id: 3, src: "/Gallery/c1-3.jpg", title: "Mountain Views" },
-    { id: 4, src: "/Gallery/c2-1.jpg", title: "Exotic Resorts" },
-    { id: 5, src: "/Gallery/c2-2.jpg", title: "Candlelight Dinner" },
-    { id: 6, src: "/Gallery/c2-3.jpg", title: "City Lights" },
-    { id: 7, src: "/Gallery/c3-1.jpg", title: "Snowy Peaks" },
-  ];
+const API_URL = "https://t2hdashboard.theholistay.in/public-gallery-images";
 
-  function Gallery() {
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
+function Gallery() {
+  const [galleryData, setGalleryData] = useState([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState({});
   const [visibleCount, setVisibleCount] = useState(9);
   const [columns, setColumns] = useState(3);
+  const [selectedImage, setSelectedImage] = useState(null); // For popup modal
+
+  // Fetch gallery data from API
+  useEffect(() => {
+    const fetchGalleryData = async () => {
+      try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        setGalleryData(data);
+        // Initialize image index for shuffling
+        const initialIndexes = {};
+        data.forEach((item) => {
+          initialIndexes[item.id] = 0;
+        });
+        setCurrentImageIndex(initialIndexes);
+      } catch (error) {
+        console.error("Error fetching gallery data:", error);
+      }
+    };
+
+    fetchGalleryData();
+  }, []);
 
   // Dynamically determine the number of columns and set initial visible count
   useEffect(() => {
@@ -33,12 +47,35 @@ const photos = [
     return () => window.removeEventListener("resize", updateColumnsAndVisibleCount);
   }, []);
 
+  // Shuffle images every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndexes) => {
+        if (!galleryData.length) return prevIndexes; // Avoid running if no data
+        const updatedIndexes = { ...prevIndexes };
+        galleryData.forEach((item) => {
+          if (item.images.length > 1) {
+            updatedIndexes[item.id] =
+              (updatedIndexes[item.id] + 1) % item.images.length;
+          }
+        });
+        return updatedIndexes;
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [galleryData]);
+
   const handleShowMore = () => {
-    setVisibleCount((prevCount) => Math.min(prevCount + columns, photos.length));
+    setVisibleCount((prevCount) => Math.min(prevCount + columns, galleryData.length));
   };
 
   const handleShowLess = () => {
     setVisibleCount((prevCount) => Math.max(prevCount - columns, columns * 2));
+  };
+
+  const handleImageClick = (imageSrc) => {
+    setSelectedImage(imageSrc);
   };
 
   return (
@@ -52,33 +89,42 @@ const photos = [
         >
           Honeymoon Gallery
         </motion.h2>
-        <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 `} >
-          {photos.slice(0, visibleCount).map((photo) => (
-            <motion.div
-              key={photo.id}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="cursor-pointer"
-              onClick={() => setSelectedPhoto(photo)}
-            >
-              <div className="overflow-hidden shadow-lg rounded-2xl h-[300px]">
-                <Image
-                  src={photo.src}
-                  alt={photo.title}
-                  width={400}
-                  height={300}
-                  className="object-fill w-full h-full"
-                />
-                <div className="p-4">
-                  <h3 className="text-lg font-medium text-center">{photo.title}</h3>
+        <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6`}>
+          {galleryData.slice(0, visibleCount).map((item) => {
+            const currentIndex = currentImageIndex[item.id] ?? 0; // Fallback to 0 if undefined
+            const currentImage =
+              item.images && item.images[currentIndex]
+                ? `https://t2hdashboard.theholistay.in/${item.images[currentIndex]}`
+                : null;
+
+            return (
+              <motion.div
+                key={item.id}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="cursor-pointer"
+                onClick={() => handleImageClick(currentImage)} // Handle image click
+              >
+                <div className="overflow-hidden shadow-lg rounded-2xl h-[300px]">
+                  {currentImage ? (
+                    <img
+                      src={currentImage}
+                      alt={`Image ${item.id}`}
+                      className="object-fill w-full h-full"
+                    />
+                  ) : (
+                    <div className="bg-gray-200 h-full w-full flex items-center justify-center">
+                      <span className="text-gray-500">Image not available</span>
+                    </div>
+                  )}
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
 
         <div className="text-center mt-6">
-          {visibleCount < photos.length && (
+          {visibleCount < galleryData.length && (
             <button
               onClick={handleShowMore}
               className="px-6 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 mr-4"
@@ -96,7 +142,7 @@ const photos = [
           )}
         </div>
 
-        {selectedPhoto && (
+        {selectedImage && (
           <motion.div
             className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
             initial={{ opacity: 0 }}
@@ -111,27 +157,29 @@ const photos = [
             //   exit={{ scale: 0.8 }}
             >
               <img
-                src={selectedPhoto.src}
-                alt={selectedPhoto.title}
+                src={selectedImage}
+                alt="Selected"
                 // width={800}
                 // height={600}
                 className="object-fill w-[100%] h-[100%]"
               />
               <div className="absolute top-0 right-0 p-2">
-                <button
-                  className="text-white bg-black rounded-full p-2"
-                  onClick={() => setSelectedPhoto(null)}
-                >
-                  &#10005;
-                </button>
+              <button
+        className="absolute top-4 right-4 bg-black text-white rounded-full p-2"
+        onClick={() => setSelectedImage(null)} // Close button
+      >
+        &#10005;
+      </button>
               </div>
             </motion.div>
           </motion.div>
         )}
+
       </div>
     </section>
   );
 }
 
+export default Gallery;
 
-export default Gallery
+

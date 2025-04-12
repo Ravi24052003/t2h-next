@@ -1,0 +1,47 @@
+/* Custom styles encapsulated within .leading-7 to prevent overriding */
+.leading-7 h1, .leading-7 h2 {
+    font-size: 2rem; /* Tailwind's text-3xl */
+    font-weight: 600; /* Tailwind's font-semibold */
+    color: #4338ca; 
+    transition: color 0.3s ease; /* Tailwind's transition-colors duration-300 */
+  }
+  
+  .leading-7 h1:hover, .leading-7 h2:hover {
+    color: #3730a3; 
+  }
+  
+  .leading-7 p {
+    font-size: 1.125rem; /* Tailwind's text-lg */
+    color: #4a5568; 
+    line-height: 1.75; /* Tailwind's leading-relaxed */
+    letter-spacing: 0.025em; /* Tailwind's tracking-wide */
+  }
+  
+  .leading-7 img {
+    width: 50%; /* Tailwind's w-full */
+    object-fit: cover;
+    height: 300px; /* Tailwind's h-80 */
+    margin-left: auto; 
+    margin-right: 10px;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .leading-7 img:hover {
+    transform: scale(1.015);
+  }
+  
+  
+  #particular-blog-description p {
+    font-size: 1.125rem;
+    color: #4a5568;
+    line-height: 1.75; /* Tailwind's leading-relaxed */
+    letter-spacing: 0.025em; /* Tailwind's tracking-wide */
+  }
+  
+  @media (max-width: 768px) {
+    .leading-7 img {
+      width: 100%; /* Tailwind's w-2/5 */
+    }
+  }

@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import Footer from "@/app/Component/Footer";
-import Navbar from "@/app/Component/Navbar";
+import Navbar from "../../Component/Navbar";
 import Image from "next/image";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import FilterHaryana from "./FilterHaryana";
 import ExploreHaryana from "./ExploreHaryana";
-import DomesticCarousel from "@/app/Component/DomesticCarousel";
+import DomesticCarousel from "../../Component/DomesticCarousel";
+import Footer from "../../Component/Footer";
 
 const tripHighlights = [
   { id: 1, category: "Culture", text: "Experience the vibrant heritage of Haryana with traditional folk dances and music.", img: "/Domestic/Haryana-culture.png" },
