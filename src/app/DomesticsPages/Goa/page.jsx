@@ -1,12 +1,12 @@
 "use client";
-import React, { useState } from "react";
-import Footer from "@/app/Component/Footer";
-import Navbar from "@/app/Component/Navbar";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronDown, ChevronUp, Filter } from "lucide-react";
 import FilterGoa from "./FilterGoa";
 import ExploreGoa from "./ExploreGoa";
-import DomesticCarousel from "@/app/Component/DomesticCarousel";
+import DomesticCarousel from "../../Component/DomesticCarousel";
+import Footer from "../../Component/Footer";
+import Navbar from "../../Component/Navbar";
 
 const tripHighlights = [
   { id: 1, category: "Beaches", text: "Relax on the pristine sands of Baga, Anjuna, and Palolem beaches.", img: "/International/Goa-1.png" },
@@ -28,6 +28,16 @@ function Page() {
     selectedCategory === "All"
       ? tripHighlights
       : tripHighlights.filter((highlight) => highlight.category === selectedCategory);
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="bg-pink-100">
