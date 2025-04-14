@@ -1,9 +1,18 @@
 "use client";
-import React from "react";
+import React, { useState , useEffect  } from "react";
+
+import { usePathname } from "next/navigation";  
 import Slider from "react-slick";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+// import  { useState } from "react";
 
 const ExploreGoa = () => {
+const [destinationName, setDestinationName] = React.useState("Destination");
+const pathname = usePathname();
+const slug = pathname.split("/").pop();
+const [loading, setLoading] = useState(true);
+
+
   const PrevButton = ({ onClick }) => (
     <button
       onClick={onClick}
@@ -75,9 +84,47 @@ const ExploreGoa = () => {
     },
   ];
 
+
+
+
+
+
+
+{ /* Api*/}
+
+const fetchItineraryData = async (slug) => {
+    try {
+      const res = await fetch(`https://t2hdashboard.theholistay.in/public-itinerary/${slug}`, {
+        cache: "no-store",
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch itinerary data");
+      }
+      const data = await res.json();
+      if (data?.selected_destination) {
+        setDestinationName(data.selected_destination);
+      } else {
+        setDestinationName("No destination details available.");
+      }
+
+      
+    } catch (err) {
+      console.error("Error fetching itinerary data:", err);
+      setError(`Failed to load itinerary data: ${err.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (slug) {
+      fetchItineraryData(slug);
+    }
+  }, [slug]);
+
   return (
     <div className="px-4 py-10 bg-pink-100 w-[100%] md:w-[90%] mx-auto">
-      <h2 className="text-3xl font-bold text-left mb-6">Explore Goa</h2>
+      <h2 className="text-3xl font-bold text-left mb-6">Explore {destinationName}</h2>
       <Slider {...settings} className="gap-5">
         {cards.map((card) => (
           <div key={card.id} className="p-2 px-3">
