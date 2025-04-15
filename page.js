@@ -14,6 +14,7 @@ import WhyChooseUs from "./Component/WhyChooseUs";
 import Testimonial from "./Component/Testimonial";
 import Gallery from "./Component/Gallery";
 
+// CI/CD Deployment test 1
 
 
 export default function page() {
