@@ -114,9 +114,9 @@ function DomesticCarousel() {
                     <span className="text-sm font-semibold text-red-500">
                       {item.pricing}
                     </span>
-                    <Link href={`DomesticsPages/${item.selected_destination}`||"#"}>
-                      <button className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
-                        Book Now
+                    <Link href={`/destination/${item.slug || "#"}`}>
+                      <button className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700 text-sm font-semibold transition duration-300">
+                        Explore Now
                       </button>
                     </Link>
                   </div>

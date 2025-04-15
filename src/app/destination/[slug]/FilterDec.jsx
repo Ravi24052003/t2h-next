@@ -305,7 +305,7 @@ export default function FilterDec() {
           className="text-gray-600"
     dangerouslySetInnerHTML={{ __html: destinationHotel_details || "According to your Choice" }}
   ></p>
-              <button className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg">
+              <button className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 transition duration-300">
                 Book Now
               </button>
             </div>

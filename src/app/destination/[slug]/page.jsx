@@ -7,6 +7,7 @@
   import DomesticCarousel from "../../Component/DomesticCarousel";
   import Footer from "../../Component/Footer";
   import Navbar from "../../Component/Navbar";
+  import { usePathname } from "next/navigation";
 
   const tripHighlights = [
     { id: 1, category: "Beaches", text: "Relax on the pristine sands of Baga, Anjuna, and Palolem beaches.", img: "/International/Goa-1.png" },
@@ -19,6 +20,13 @@
   function Page() {
     const [activeDay, setActiveDay] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState("All");
+    const [destinationName, setDestinationName] = useState("Destination");
+    const [destinationImages, setDestinationImages] = useState([]);
+    const pathname = usePathname();
+    const slug = pathname.split("/").pop();
+    const [loading, setLoading] = useState(true);
+    
+    
 
     const toggleDay = (day) => {
       setActiveDay(activeDay === day ? null : day);
@@ -35,7 +43,44 @@
 
 
 
+const fetchItineraryData = async (slug) => {
+    try {
+      const res = await fetch(
+        `https://t2hdashboard.theholistay.in/public-itinerary/${slug}`,
+        { cache: "no-store" }
+      );
+      if (!res.ok) {
+        throw new Error("Failed to fetch itinerary data");
+      }
+      const data = await res.json();
+      if (data?.selected_destination) {
+        setDestinationName(data.selected_destination);
+      } else {
+        setDestinationName("No destination details available.");
+      }
 
+      if (data?.destination_thumbnail && Array.isArray(data.destination_thumbnail)) {
+        const fullImageUrls = data.destination_thumbnail.map(
+          (image) => `https://t2hdashboard.theholistay.in/${image}`
+        );
+        setDestinationImages(fullImageUrls);
+      } else {
+        setDestinationImages([]);
+      }
+
+    } catch (err) {
+      console.error("Error fetching itinerary data:", err);
+      setError(`Failed to load itinerary data: ${err.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (slug) {
+      fetchItineraryData(slug);
+    }
+  }, [slug]);
 
 
 
@@ -82,7 +127,7 @@
             {/* Right Section */}
             {/* Right Section */}
 <div className="w-[30%] hidden sm:inline-block">
-  <img src="/International/Goa-beach.png" alt="" className="w-full rounded-md" />
+  <img src={destinationImages} alt="" className="w-full rounded-md" />
   
   {/* Form Section */}
   <div className="mt-8 p-6 bg-white shadow-md rounded-md">
