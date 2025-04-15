@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronRight, ChevronUp, ChevronLeft } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 export default function FilterDec() {
@@ -24,6 +24,23 @@ export default function FilterDec() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
+
+  // const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === destinationImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+  
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? destinationImages.length - 1 : prevIndex - 1
+    );
+  };
+  
+
+
 
   const toggleDay = (day) => {
     setActiveDay((prev) => (prev === day ? null : day));
@@ -102,17 +119,11 @@ export default function FilterDec() {
         setDestinationTermsandConditions("No destination details available.");
       }
 
-      if (data?.destination_images) {
-        const validImages = data.destination_images.map((img) =>
-          img.startsWith("http") ? img : `http://${img}`
+      if (data?.destination_images && Array.isArray(data.destination_images)) {
+        const fullImageUrls = data.destination_images.map(
+          (image) => `https://t2hdashboard.theholistay.in/${image}`
         );
-        setDestinationImages(validImages);
-      } else if (data?.images) {
-        const validImages = data.images.map((img) =>
-          img.startsWith("http") ? img : `http://${img}`
-        );
-        setDestinationImages(validImages);
-      
+        setDestinationImages(fullImageUrls);
       } else {
         setDestinationImages([]);
       }
@@ -188,12 +199,26 @@ export default function FilterDec() {
       <li dangerouslySetInnerHTML={{ __html: destinationDetail }}></li>
     </ul>
     {destinationImages.length > 0 ? (
-      <img
-        src={destinationImages[currentImageIndex]} // Dynamically change the image
-        alt={`Image of ${destinationName || "destination"}`}
-        className="rounded-lg bg-gray-400 w-full h-[300px] mb-4 object-cover"
-        onError={(e) => (e.target.src = "https://via.placeholder.com/300")} // Fallback image on error
-      />
+      <div className="relative">
+        <img
+          src={destinationImages[currentImageIndex]} // Dynamically change the image
+          alt={`Image of ${destinationName || "destination"}`}
+          className="rounded-lg bg-gray-400 w-full h-[300px] mb-4 object-cover"
+          onError={(e) => (e.target.src = "https://via.placeholder.com/300")} // Fallback image on error
+        />
+        <button
+          onClick={handlePrevImage}
+          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full z-10 hover:bg-opacity-75"
+        >
+          <ChevronLeft className="w-10 h-10`" />
+        </button>
+        <button
+          onClick={handleNextImage}
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full z-10 hover:bg-opacity-75"
+        >
+          <ChevronRight className="w-10 h-10" />
+        </button>
+      </div>
     ) : (
       <p className="text-gray-500">No images available for this destination.</p>
     )}
