@@ -59,14 +59,12 @@ const fetchItineraryData = async (slug) => {
         setDestinationName("No destination details available.");
       }
 
-      if (data?.destination_thumbnail && Array.isArray(data.destination_thumbnail)) {
-        const fullImageUrls = data.destination_thumbnail.map(
-          (image) => `https://t2hdashboard.theholistay.in/${image}`
-        );
-        setDestinationImages(fullImageUrls);
+      if (data?.destination_thumbnail && typeof data.destination_thumbnail === "string") {
+        setDestinationImages(`https://t2hdashboard.theholistay.in/${data.destination_thumbnail}`);
       } else {
-        setDestinationImages([]);
+        setDestinationImages(null); // Handle no image case
       }
+      
 
     } catch (err) {
       console.error("Error fetching itinerary data:", err);
@@ -127,10 +125,18 @@ const fetchItineraryData = async (slug) => {
             {/* Right Section */}
             {/* Right Section */}
 <div className="w-[30%] hidden sm:inline-block">
-  <img src={destinationImages} alt="" className="w-full rounded-md" />
+{destinationImages ? (
+    <img
+      src={destinationImages}
+      alt="Destination Image"
+      className="w-full rounded-md"
+    />
+  ) : (
+    <p className="text-gray-700">No image available for this destination.</p>
+  )}
   
   {/* Form Section */}
-  <div className="mt-8 p-6 bg-white shadow-md rounded-md">
+  <div className="mt-8 p-6 bg-white shadow-md rounded-md sticky top-[75px]">
     <h3 className="text-2xl font-semibold text-gray-800 mb-4">Get In Touch</h3>
     <form>
       <div className="mb-4">

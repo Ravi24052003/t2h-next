@@ -12,7 +12,7 @@ function PopularDestination() {
     const fetchDestinations = async () => {
       try {
         const response = await fetch(
-          "https://admiredashboard.theholistay.in/public-itineraries-exclusive"
+          "https://t2hdashboard.theholistay.in/public-itineraries-exclusive"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch destinations");
@@ -24,14 +24,16 @@ function PopularDestination() {
           (item) => ({
             name: item.selected_destination || "Unknown",
             image: item.destination_thumbnail
-              ? `https://admiredashboard.theholistay.in/${item.destination_thumbnail}`
+              ? `https://t2hdashboard.theholistay.in/${item.destination_thumbnail}`
               : "/placeholder.png",
             amount: item.pricing || "Request for Quotation",
-            // link: `/destinations/${item.slug || "#"}`,
+            title: item.title || "Title not available",
+            duration: item.duration || "Title not available",
+            link: `/destination/${item.slug || "#"}`,
             
-            link: item.domestic_or_international === "domestic"
-                ? `DomesticsPages/${item.selected_destination}` || "#"
-                : item.selected_destination || "#",
+            // link: item.domestic_or_international === "domestic"
+            //     ? `DomesticsPages/${item.selected_destination}` || "#"
+            //     : item.selected_destination || "#",
             
             details1: item.details || "No details available.",
             details2: item.description || "No description available.",
@@ -125,9 +127,10 @@ function PopularDestination() {
           {/* Right Content */}
           <div className="flex-1 flex flex-col justify-between ">
             <div>
-              <h3 className="text-2xl font-bold mb-4">{destinations[currentIndex].name}</h3>
-              <p className="text-gray-700 mb-4">{destinations[currentIndex].details1}</p>
+              <h3 className="text-3xl font-bold mb-4">{destinations[currentIndex].name}</h3>
+              <p className="text-gray-700 font-bold mb-4">{destinations[currentIndex].title}</p>
               <p className="text-gray-700 mb-4">{destinations[currentIndex].details2}</p>
+              <p className="text-gray-700 mb-4">{destinations[currentIndex].duration}</p>
               <p className="text-red-500 text-xl font-bold mb-4">{destinations[currentIndex].amount}</p>
               <div className="flex gap-4">
                 <Link href={destinations[currentIndex].link}>
