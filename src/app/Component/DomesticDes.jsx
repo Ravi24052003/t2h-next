@@ -14,7 +14,7 @@ function DomesticDes() {
     const fetchDestinations = async () => {
       try {
         const response = await fetch(
-          "https://admiredashboard.theholistay.in/public-itineraries-domestic"
+          "https://t2hdashboard.theholistay.in/public-itineraries-domestic"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch destinations");
@@ -26,10 +26,13 @@ function DomesticDes() {
           destination: item.selected_destination || "Unknown",
           images: [
             item.destination_thumbnail
-              ? `https://admiredashboard.theholistay.in/${item.destination_thumbnail}`
+              ? `https://t2hdashboard.theholistay.in/${item.destination_thumbnail}`
               : "/placeholder.png",
           ],
+          link: `/destination/${item.slug || "#"}`,
           content: item.description || "No description available.",
+          duration: item.duration || "Title not available",
+          title: item.title || "Title not available",
         }));
 
         setDestinations(processedData);
@@ -92,8 +95,10 @@ function DomesticDes() {
                     />
                   </div>
                   <div className="w-[50%]">
-                    <h3 className="text-lg font-semibold">{item.destination}</h3>
-                    <p className="text-sm text-gray-600">{item.content}</p>
+                    <h3 className="text-2xl font-bold text-">{item.destination}</h3>
+                    <p className=" font-semibold mb-4 text-md">{item.title}</p>
+                    <p className="">{item.duration}</p>
+                    <p className="text-sm text-gray-600">{item.content}</p> 
                     <p className="text-red-500 font-semibold text-lg mt-2">
                       Request for Quotation
                     </p>
@@ -114,7 +119,9 @@ function DomesticDes() {
               <div key={index}>
                 <div className="flex flex-row gap-4 items-center bg-[#FFAD9E] px-4 pb-4 rounded-b-lg">
                   <div className="w-[50%]">
-                    <h3 className="text-lg font-semibold">{item.destination}</h3>
+                    <h3 className="text-2xl font-bold">{item.destination}</h3>
+                    <p className=" font-semibold mb-4 text-md">{item.title}</p>
+                    <p className="">{item.duration}</p>
                     <p className="text-sm text-gray-600">{item.content}</p>
                     <p className="text-red-500 font-semibold text-lg mt-2">
                       Request for Quotation

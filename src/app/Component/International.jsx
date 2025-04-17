@@ -13,7 +13,7 @@ function International() {
     const fetchDestinations = async () => {
       try {
         const response = await fetch(
-          "https://admiredashboard.theholistay.in/public-itineraries-international"
+          "https://t2hdashboard.theholistay.in/public-itineraries-international"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch destinations");
@@ -26,10 +26,12 @@ function International() {
             name: item.selected_destination || "Unknown",
             description: item.description || "No description available.",
             image: item.destination_thumbnail
-              ? `https://admiredashboard.theholistay.in/${item.destination_thumbnail}`
+              ? `https://t2hdashboard.theholistay.in/${item.destination_thumbnail}`
               : "/placeholder.png", // Construct full URL or use a placeholder
-            // link: `/destinations/${item.selected_destination || "#"}`, // Use slug for dynamic link
-            link: item.selected_destination
+              title: item.title || "Title not available",
+            link: `/destination/${item.slug || "#"}`, // Use slug for dynamic link
+            duration: item.duration || "Title not available",
+            // link: item.selected_destination
           })
         );
   
@@ -92,10 +94,12 @@ function International() {
           }}
         >
           <div className="text-white bg-black bg-opacity-40 p-5 rounded-lg sm:inline-block">
-            <h1 className="text-xl md:text-5xl text-white font-bold mt-8">
+            <h1 className="text-xl md:text-4xl text-white font-bold mt-4 mb-2">
               {destinations[activeIndex].name}
             </h1>
-            <p className="mt-4 text-md md:text-lg sm:w-60 ">
+            <p className=" font-semibold mb-4 text-md">{destinations[activeIndex].title}</p>
+            <p className="">{destinations[activeIndex].duration}</p>
+            <p className="mt-4 text-md md:text-lg italic sm:w-60 bg-black bg-opacity-40 p-2 rounded-lg">
               {destinations[activeIndex].description}
             </p>
             <Link href={destinations[activeIndex].link}>
