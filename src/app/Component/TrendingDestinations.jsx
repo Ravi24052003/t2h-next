@@ -155,9 +155,12 @@ function TrendingDestinations() {
 
   return (
     <div className="px-[5%] py-5 bg-pink-100" id="TrendingDestinations">
-      <h1 className="text-center font-bold text-2xl mb-5">
+      <div className="mb-5">
+      <h1 className="text-center font-bold text-2xl ">
         Trending Destinations
       </h1>
+      <div className="flex justify-center ">
+        <img src="/images/underline-img.png"  className="h-4 w-[300px] text-center" alt="" /></div></div>
       <Slider {...settings} >
       {destinations.map((card, index) => (
           <div key={index}  className="px-2 ">

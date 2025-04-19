@@ -87,7 +87,11 @@ function Gallery() {
           transition={{ duration: 0.5 }}
           className="text-3xl font-bold text-center mb-8"
         >
-          Honeymoon Gallery
+          
+          <div className="mb-8"><h2 className="text-3xl font-bold text-center ">Honeymoon Gallery</h2>
+        <div className="flex justify-center ">
+        <img src="/images/underline-img.png"  className="h-5 w-[300px] text-center" alt="" /></div>
+        </div>
         </motion.h2>
         <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6`}>
           {galleryData.slice(0, visibleCount).map((item) => {

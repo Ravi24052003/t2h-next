@@ -86,7 +86,10 @@ function PopularDestination() {
   return (
     <div className="bg-pink-100 p-8 rounded-lg relative w-full mx-auto" id="PopularDestination">
       <div className="bg-pink-100 p-8 rounded-lg relative max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-8">Popular Destination</h2>
+        <div className="mb-8"><h2 className="text-3xl font-bold text-center ">Popular Destination</h2>
+        <div className="flex justify-center ">
+        <img src="/images/underline-img.png"  className="h-5 w-[300px] text-center" alt="" /></div>
+        </div>
 
         {/* Top Section */}
         <div className="sm:flex flex-wrap lg:flex-nowrap gap-8">

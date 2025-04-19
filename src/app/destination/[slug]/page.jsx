@@ -25,6 +25,8 @@
     const pathname = usePathname();
     const slug = pathname.split("/").pop();
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [showFilter, setShowFilter] = useState(false);
     
     
 

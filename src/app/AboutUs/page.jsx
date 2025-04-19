@@ -10,7 +10,7 @@ export default function AboutUs() {
     return (
       <div>
       <Navbar/>
-      {/* <Herosection/> */}
+      <Herosection/>
 <About/>
 <WhyChooseUs/>
 <Testimonials/>

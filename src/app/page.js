@@ -13,6 +13,8 @@ import Footer from "./Component/Footer";
 import WhyChooseUs from "./Component/WhyChooseUs";
 import Testimonial from "./Component/Testimonial";
 import Gallery from "./Component/Gallery";
+import Weekend from "./Component/weekend";
+import WeekendGetway from "./Component/WeekendGetway";
 
 
 
@@ -22,9 +24,12 @@ export default function page() {
    <Navbar/>
    {/* <ImageSliderWithText/> */}
    <Herosection/>
+   
    <TrendingDestinations/>
+   <Weekend/>
    <TrendingWeddingDestinations/>
    <About/>
+   <WeekendGetway/>
    <PopularDestination/>
    <InternationalDes/>
    <Demostic/>
