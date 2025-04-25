@@ -175,9 +175,7 @@ function TrendingDestinations() {
                   {card.destination_images.map((image, index) => (
                     <Link 
                     
-                    href={card.domestic_or_international === "domestic"
-                ? `DomesticsPages/${card.selected_destination}` || "#"
-                : card.selected_destination || "#"} 
+                    href={`/destination/${card.slug || "#"}`} 
 
                 key={index}  className="w-[87%] "><img
                       
@@ -198,14 +196,14 @@ function TrendingDestinations() {
                   <Link href={card.link} > <button className="bg-red-500 w-[100%] text-white text-sm px-4 py-2 rounded-lg shadow">
                     Book now
                   </button></Link> */}
-                  <Link href="/Contactus" className="w-[13%] "><div className="bg-red-600 p-2  rounded-lg"><Phone className="text-white h-5 " /></div></Link>
+                  <Link href="/Contactus" className="w-[13%] "><div className="bg-red-600 hover:bg-red-500 p-2  rounded-lg"><Phone className="text-white h-5 " /></div></Link>
                   <Link 
                 //   href={card.domestic_or_international === "domestic"
                 // ? `DomesticsPages/${card.selected_destination}` || "#"
                 // : card.selected_destination || "#"} `/blog/${blog.blog_slug}`
                 href={`/destination/${card.slug || "#"}`}
                 className="w-[87%] ">
-                  <div className="bg-red-600 rounded-lg shadow p-2 flex "><button className=" text-white text-sm  w-full ">Explore Now</button></div></Link>
+                  <div className="bg-red-600 hover:bg-red-500 rounded-lg shadow p-2 flex "><button className=" text-white text-sm  w-full ">Explore Now</button></div></Link>
                 </div>
               </div>
             </div>

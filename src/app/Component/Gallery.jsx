@@ -152,7 +152,7 @@ function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedPhoto(null)}
+            // onClick={() => setSelectedPhoto(null)}
           >
             <motion.div
               className="relative bg-white rounded-xl overflow-hidden w-[75%] h-[75%] sm:w-[50%] sm:h-[90%] "
