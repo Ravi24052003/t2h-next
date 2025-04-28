@@ -26,20 +26,20 @@ export default function page() {
    <Herosection/>
    
    <TrendingDestinations/>
-   <Weekend/>
+   {/* <Weekend/> */}
    <TrendingWeddingDestinations/>
    <About/>
-   <WeekendGetway/>
+   {/*  <WeekendGetway/> */}
    <PopularDestination/>
-   <InternationalDes/>
+   {/* <InternationalDes/> 
    <Demostic/>
    <Resort/>
    <Gallery/>
    <WhyChooseUs/>
    <Testimonial/> 
-   <Services/>
+   <Services/>*/}
    {/* <ContactForm/> */}
-   <Footer/>
+   <Footer/> 
   </div>
   );
 }

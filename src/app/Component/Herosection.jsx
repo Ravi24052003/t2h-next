@@ -33,12 +33,12 @@ function Herosection() {
   }, []);
 
   return (
-    <div className="w-full bg-gray-100">
+    <div >
       {homeVideoUrl ? (
         <video
           src={homeVideoUrl}
           playsInline
-          width="100%"
+          width="10%"
           muted
           loop
         >
