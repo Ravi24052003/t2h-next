@@ -8,6 +8,25 @@ import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube, YoutubeIcon
 
 
 const App = () => {
+
+  const portfolioItems = [
+    {
+      title: "Big Card Example",
+      imgSrc: "/images/card1.png",
+      isBig: true,
+    },
+    {
+      title: "Small Card 1",
+      imgSrc: "/images/small-project1.jpg",
+      isBig: false,
+    },
+    {
+      title: "Small Card 2",
+      imgSrc: "/images/card2.png",
+      isBig: false,
+    },
+  ];
+
   return (
     <div><div>
     <video
@@ -22,7 +41,7 @@ const App = () => {
 </div>
     <div className="bg-white text-gray-900">
       {/* Hero Section */}
-      <section className="relative pt-24 md:pt-28 lg:pt-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 select-none">
+      <section className="relative pt-24 md:pt-28 lg:pt-32 max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 select-none">
         <div className="relative rounded-3xl overflow-hidden brightness-75">
           <img
             // autoPlay
@@ -79,7 +98,7 @@ const App = () => {
       </section>
 
       {/* Passion Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-44 relative">
+      <section className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-44 relative">
         <div className="bg-blue-200 rounded-3xl py-24 px-6 sm:px-12 text-center select-none relative z-10">
           <h2 className="text-blue-900 font-semibold text-lg mb-2 tracking-wide">
             CREATED WITH PASSION
@@ -138,9 +157,198 @@ const App = () => {
           ))}
         </div>
       </section>
+
+
+
+
+      {/* <section className="bg-gray-900 py-16">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-white text-center mb-12">
+          Our Portfolio
+        </h2>
+        <div className="grid gap-6 md:grid-cols-3">
+          {portfolioItems.map((item, index) => (
+            <div
+              key={index}
+              className={`relative bg-gray-800 rounded-lg overflow-hidden shadow-lg group transform transition hover:scale-105 ${
+                item.isBig ? "md:w-[800px] h-64" : "h-64"
+              }`}
+            >
+              <img
+                src={item.imgSrc}
+                alt={item.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-0 group-hover:opacity-70 transition duration-300"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section> */}
+
+
     </div>
 
 
+
+
+
+{/* new div */}
+
+<section className="px-[5%] p-12 ">
+{/* <div className="bg-white shadow-lg p-12"> */}
+{/* Top Section with Cards */}
+<div className="relative md:-mb-10 lg:-mb-24 z-10 bg-gray-100 md:bg-transparent rounded-3xl mb-2 ">
+        <div className="grid grid-cols-2 sm:grid-flow-col-2 md:grid-cols-4 gap-6 px-6 py-8 ">
+          {[
+            {
+              icon: "fas fa-map-marker-alt",
+              title: "OUR MAIN OFFICE",
+              content: "34, Sewak Park (1st floor), Dwarka More Metro, Near Metro Pillar No-772, New Delhi-110059",
+              // icon: "🏢",
+            },
+            {
+              icon: "fas fa-mobile-alt",
+              title: "PHONE NUMBER",
+              content: "1800-121-4252 (Toll Free)",
+              // icon: "📞",
+              icon: "fas fa-mobile-alt",
+            },
+            {
+              icon: "fas fa-globe",
+              title: "Website",
+              content: <a  className="hover:underline hover:text-blue-800" href="https://www.travelnworld.com">www.travelnworld.com</a>,
+              // icon: "🌐",
+            },
+            {
+              title: "EMAIL",
+              content: "info@travelnworld.com",
+              // icon: "✉️",
+              icon: "fas fa-envelope",
+            },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="flex transform transition-transform duration-300 hover:translate-y-4 hover:shadow-xl flex-col items-center text-center bg-white border-t-4 border-[#01035E] shadow-xl rounded-xl px-6 pb-4"
+            >
+              {/* <div className="text-3xl text-purple-600 mb-4">{item.icon}</div> */}
+              <div className={`md:bg-white md:border-b-4 md:border-[#01035E] md:w-full md:h-15 md:mx-auto rounded-3xl md:relative md:-top-12 text-5xl text-center   ${item.highlighted ? "text-blue-900" : "text-blue-900"}`}>
+                <i className={`p-2 ${item.icon}`}></i>
+              </div>
+              <h3 className="font-bold text-lg text-gray-800">{item.title}</h3>
+              <p className="text-gray-600 whitespace-pre-line">{item.content}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    <div className="bg-gray-100 shadow-lg rounded-3xl ">
+    <div className=" px-6 pt-6 md:px-12 md:pt-25  lg:px-20 lg:pt-32">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Left Side: Image and Text */}
+        <div className="flex flex-col items-center text-center md:text-left md:items-start">
+          <img
+            src="/images/admire.jpeg" // Replace with the actual path to your image
+            alt="Contact Person"
+            className="rounded-full shadow-md mb-6 w-48 h-48 object-cover"
+          />
+          <h2 className="text-xl font-bold text-gray-800 mb-2">Contact Us</h2>
+          <p className="text-gray-600">
+            Reach out to us and we will get back to you as soon as possible.
+          </p>
+        </div>
+
+        {/* Right Side: Form */}
+        <div className="bg-gray-50 p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">Get in Touch</h2>
+          <form>
+            <div className="mb-4">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                className="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Your Name"
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Your Email"
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={4}
+                className="mt-2 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 h-32"
+                placeholder="Your Message"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              Contact Us Now
+            </button>
+          </form>
+        </div>
+      </div>
+      </div>
+
+      {/* Bottom Section: Contact Details */}
+      {/* <div className=> */}
+      <div className=" text-center mt-12 py-2  rounded-b-3xl bg-gradient-to-r from-blue-600 to-purple-600 text-white  ">
+      <h2 className="mx-auto hover:bg-white hover:text-blue-800 w-40  text-2xl font-bold text-white border-b-2 hover:border-b-2 hover:border-red-800  rounded-xl mb-5">Follow Us</h2>
+        <div className="flex justify-center space-x-4 gap-6 ">
+                <a
+                  href="#"
+                  className="p-2  bg-white text-blue-700 hover:text-white rounded-full hover:shadow-xl hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 text-3xl"
+                  aria-label="Facebook"
+                >
+                  <i className="fab fa-facebook m-1"></i>   
+                </a>
+                <a
+                  href="#"
+                  className="p-2 bg-white   text-red-600 hover:text-white rounded-full hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 text-3xl"
+                  aria-label="Youtube"
+                >
+                  	<i className="fab fa-youtube m-1"></i>
+                </a>
+                <a
+                  href="#"
+                  className="p-2 bg-white text-pink-600 hover:text-white rounded-full hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 text-3xl"
+                  aria-label="Instagram"
+                >
+                  <i className="fab fa-instagram m-1"></i>
+                </a>
+                </div>
+      </div>
+    </div>
+      {/* </div> */}
+</section>
+
+
+
+
+
+
+{/* contact */}
     <section className="bg-gradient-to-r from-white-100 to white-300 py-20">
       <div className="min-h-screen bg-gray-50 py-12">
       {/* Hero Section */}
