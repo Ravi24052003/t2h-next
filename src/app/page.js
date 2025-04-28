@@ -21,7 +21,7 @@ import WeekendGetway from "./Component/WeekendGetway";
 export default function page() {
   return (
     <div className="w-full bg-pink-100">
-   <Navbar/>
+   {/* <Navbar/> */}
    {/* <ImageSliderWithText/> */}
    <Herosection/>
    
@@ -39,7 +39,7 @@ export default function page() {
    <Testimonial/> 
    <Services/>*/}
    {/* <ContactForm/> */}
-   <Footer/> 
+   {/* <Footer/>  */}
   </div>
   );
 }
