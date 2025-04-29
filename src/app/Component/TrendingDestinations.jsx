@@ -161,7 +161,55 @@ function TrendingDestinations() {
       </h1>
       <div className="flex justify-center ">
         <img src="/images/underline-img.png"  className="h-4 w-[300px] text-center" alt="" /></div></div>
-      <div className="text-center text-red-700 text-3xl font-bol">File corrupted... </div>
+      <Slider {...settings} >
+      {destinations.map((card, index) => (
+          <div key={index}  className="px-2 ">
+            <div className="bg-white border rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300 h-[400px]">
+              <div className="relative h-60 overflow-hidden rounded-lg">
+                <Slider
+                  arrows={false}
+                  autoplay={true}
+                  autoplaySpeed={3000} // Each card's images change every 1 second
+                  infinite={true}
+                >
+                  {card.destination_images.map((image, index) => (
+                    <Link 
+                    
+                    href={`/destination/${card.slug || "#"}`} 
+
+                key={index}  className="w-[87%] "><img
+                      
+                      src={image}
+                      alt={card.placeName}
+                      className="w-full h-60 object-cover"
+                    /></Link>  
+                  ))}
+                </Slider>
+              </div>
+              <div className="mt-2 text-center">
+                <h3 className="text-xl font-semibold">{card.selected_destination}</h3>
+                <p className="text-xs">{card.description || "No Discription Available from Api"}</p>
+                <div className="mt-4 flex  gap-3  w-[100%]">
+                  {/* <Link href="/Contactus "><div className=" ml-5 w-[1/4] rounded-md bg-red-600 p-2">
+                    <Phone className="text-white w-6 h-6 " />
+                  </div></Link>
+                  <Link href={card.link} > <button className="bg-red-500 w-[100%] text-white text-sm px-4 py-2 rounded-lg shadow">
+                    Book now
+                  </button></Link> */}
+                  <Link href="/Contactus" className="w-[13%] "><div className="bg-red-600 hover:bg-red-500 p-2  rounded-lg"><Phone className="text-white h-5 " /></div></Link>
+                  <Link 
+                //   href={card.domestic_or_international === "domestic"
+                // ? `DomesticsPages/${card.selected_destination}` || "#"
+                // : card.selected_destination || "#"} `/blog/${blog.blog_slug}`
+                href={`/destination/${card.slug || "#"}`}
+                className="w-[87%] ">
+                  <div className="bg-red-600 hover:bg-red-500 rounded-lg shadow p-2 flex "><button className=" text-white text-sm  w-full ">Explore Now</button></div></Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </Slider>
     </div>
   );
 }

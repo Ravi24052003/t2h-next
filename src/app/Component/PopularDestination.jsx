@@ -98,29 +98,29 @@ function PopularDestination() {
             <img
               src={destinations[currentIndex].image}
               alt={destinations[currentIndex].name}
-              className=""
+              className="absolute inset-0 rounded-lg object-cover w-full h-full"
             />
             <button
               onClick={handleNext}
-              className=""
+              className="absolute top-1/2 -right-4 bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-red-600 transition transform -translate-y-1/2"
             >
               ▶
             </button>
           </div>
 
           {/* Bottom */}
-          <div className="">
+          <div className="flex flex-row md:absolute md:bottom-14 md:right-28 md:flex-row gap-4 z-1 mt-3 ">
             {getVisibleDestinations().map((destination, index) => (
               <div
                 key={index}
-                className=""
+                className="relative rounded-lg overflow-hidden shadow-lg bg-white w-full sm:w-1/2 md:w-48 h-40 md:h-32"
               >
                 <img
                   src={destination.image}
                   alt={destination.name}
-                  className="ll"
+                  className="absolute inset-0 object-cover w-full h-full"
                 />
-                <div className="">
+                <div className="absolute bottom-0 w-full bg-opacity-50 text-center py-2">
                   <h4 className="text-white font-bold">{destination.name}</h4>
                 </div>
               </div>
@@ -128,7 +128,7 @@ function PopularDestination() {
           </div>
 
           {/* Right Content */}
-          <div className=" ">
+          <div className="flex-1 flex flex-col justify-between ">
             <div>
               <h3 className="text-3xl font-bold mb-4">{destinations[currentIndex].name}</h3>
               <p className="text-gray-700 font-bold mb-4">{destinations[currentIndex].title}</p>

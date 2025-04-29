@@ -18,18 +18,18 @@ function About() {
             </div>
 
             {/* Right Content */}
-            <div >
+            <div className="flex max-w-full sm:max-w-[50%] items-center justify-center sm:justify-start  space-x-4 sm:space-x-6">
                 {/* Images */}
-                <div >
+                <div className="flex space-x-4 items-end">
                     <img
                         src="/images/about1.png"
                         alt="Couple 1"
-                        
+                        className="rounded-t-[50%] w-[120px] h-[120px] sm:w-[200px] sm:h-[200px] object-cover shadow-lg"
                     />
                     <img
                         src="/images/about2.jpeg"
                         alt="Couple 2"
-                        
+                        className="rounded-t-[50%] w-[150px] h-[200px] sm:w-60 sm:h-[250px] object-cover shadow-lg"
                     />
                 </div>
             </div>

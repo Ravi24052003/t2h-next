@@ -21,25 +21,25 @@ import WeekendGetway from "./Component/WeekendGetway";
 export default function page() {
   return (
     <div className="w-full bg-pink-100">
-   {/* <Navbar/> */}
+   <Navbar/>
    {/* <ImageSliderWithText/> */}
    <Herosection/>
    
    <TrendingDestinations/>
-   {/* <Weekend/> */}
+   <Weekend/>
    <TrendingWeddingDestinations/>
    <About/>
-   {/*  <WeekendGetway/> */}
+    <WeekendGetway/>
    <PopularDestination/>
-   {/* <InternationalDes/> 
+   <InternationalDes/> 
    <Demostic/>
    <Resort/>
    <Gallery/>
    <WhyChooseUs/>
    <Testimonial/> 
-   <Services/>*/}
+   <Services/>
    {/* <ContactForm/> */}
-   {/* <Footer/>  */}
+   <Footer/> 
   </div>
   );
 }
