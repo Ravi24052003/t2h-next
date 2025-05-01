@@ -78,19 +78,19 @@ function Weekend() {
           {data.map((item, index) => (
             <div key={index} className="p-4">
               <div className="bg-pink-100 p-4 rounded-lg shadow-md">
-                <img
-                  src={item.destination_thumbnail}
-                  alt={item.title || "Weekend Getaway"}
-                  className="w-full h-[200px] object-cover rounded-t-lg"
-                />
-                <div className="mt-4 space-y-1">
+                  {/* <img
+                    src={item.destination_thumbnail}
+                    alt={item.title || "Weekend Getaway"}
+                    className="w-full h-[200px] object-cover rounded-t-lg"
+                  /> */}
+                {/* <div className="mt-4 space-y-1">
                   <h3 className="font-bold text-lg text-[#261F43] truncate">{item.title}</h3>
                   <p className="text-sm text-gray-700">
                     {item.domestic_or_international ? "Domestic" : "International"}
                   </p>
                   <p className="text-sm text-gray-700">Duration: {item.duration}</p>
                   <p className="text-sm text-gray-700">Pricing: {item.pricing || "Request for Quotation"}</p>
-                </div>
+                </div> */}
                 <div className="mt-4 flex items-center justify-between">
                   <div className="flex items-center gap-2 text-red-600 hover:text-red-500  font-semibold text-2xl">
                     <svg

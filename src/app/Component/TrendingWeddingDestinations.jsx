@@ -50,7 +50,7 @@ function TrendingWeddingDestinations() {
             key={index}
             className="px-2" // Add horizontal padding for spacing
           >
-            <div className="bg-[url('/images/weddingslide1.jpg')] bg-cover bg-center rounded-lg shadow-lg p-4 text-white h-[195px]">
+            <div className="bg-[url('/images/weddingslide1.jpg')] bg-cover bg-center rounded-lg shadow-lg p-4 text-white w-[11145px] h-[595px]">
               <div className="flex justify-between">
                 <div className="w-2/3 p-1 flex flex-col justify-between">
                   <h5 className="text-sm font-bold mb-2">{card.name}</h5>
